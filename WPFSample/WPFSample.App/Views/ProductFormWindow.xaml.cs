@@ -20,13 +20,7 @@ namespace WPFSample.App.Views
     /// Interaction logic for ProductFormWindow.xaml
     /// </summary>
     public partial class ProductFormWindow : Window
-    {
-        [Dependency]
-        public ProductFormWindowViewModel ViewModel
-        {
-            set { DataContext = value; }
-        }
-
+    {    
         public ProductFormWindow()
         {
             InitializeComponent();

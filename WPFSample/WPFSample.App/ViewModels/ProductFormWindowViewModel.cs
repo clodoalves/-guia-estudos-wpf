@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using Prism.Commands;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,12 +46,15 @@ namespace WPFSample.App.ViewModels
             get { return _price; }
             set { SetProperty(ref _price, value); }
         }
-    
-        public async void AddProduct()
+
+        private DelegateCommand _addProduct;
+
+        public DelegateCommand AddProduct => _addProduct ?? (_addProduct = new DelegateCommand(ExecuteAddProduct));
+
+        private async void ExecuteAddProduct()
         {
             Product product = BindProductObject();
-
-           await _productService.AddProductAsync(product);
+            await _productService.AddProductAsync(product);
         }
 
         private Product BindProductObject()
@@ -62,5 +66,6 @@ namespace WPFSample.App.ViewModels
                 Quantity = Quantity
             };
         }
+
     }
 }

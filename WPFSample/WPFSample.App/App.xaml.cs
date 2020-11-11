@@ -27,7 +27,7 @@ namespace WPFSample.App
             IUnityContainer container = new UnityContainer();
 
             //View Models
-            container.RegisterType<ProductFormWindowViewModel>();
+            //container.RegisterType<ProductFormWindowViewModel>();
 
             //Repositories
             container.RegisterType<IProductRepository, ProductRepository>();
