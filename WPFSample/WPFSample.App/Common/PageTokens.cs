@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFSample.Domain
+namespace WPFSample.App.Common
 {
-    public class Class1
+    public class PageTokens
     {
+        public const string PRODUCT_FORM_PAGE = "ProductForm";
     }
 }
