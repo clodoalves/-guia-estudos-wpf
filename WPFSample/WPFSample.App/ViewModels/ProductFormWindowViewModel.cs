@@ -10,7 +10,7 @@ using WPFSample.Service.Contract;
 
 namespace WPFSample.App.ViewModels
 {
-    public class ProductFormWindowViewModel : BindableBase
+    public class ProductFormWindowViewModel : BindableBase, IProductFormWindowViewModel
     {
         private readonly IProductService _productService;
 
@@ -21,7 +21,7 @@ namespace WPFSample.App.ViewModels
 
         public ProductFormWindowViewModel(IProductService productService)
         {
-            this._productService = productService;
+            _productService = productService;
         }
 
         public int Code { get; set; }

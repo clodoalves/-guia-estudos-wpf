@@ -21,9 +21,10 @@ namespace WPFSample.App.Views
     /// </summary>
     public partial class ProductFormWindow : Window
     {    
-        public ProductFormWindow()
+        public ProductFormWindow(IProductFormWindowViewModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
     }
 }

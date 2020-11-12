@@ -14,7 +14,8 @@
         
     </Window.Resources>
    
-    <Grid DataContext="{Binding Source={StaticResource ResourceKey=ProductForm}}"
+    <!--<Grid DataContext="{Binding Source={StaticResource ResourceKey=ProductForm}}"-->
+    <Grid
         HorizontalAlignment="Stretch" 
         VerticalAlignment="Center">
         <Grid.RowDefinitions>

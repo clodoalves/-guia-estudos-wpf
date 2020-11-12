@@ -27,7 +27,7 @@ namespace WPFSample.App
             IUnityContainer container = new UnityContainer();
 
             //View Models
-            //container.RegisterType<ProductFormWindowViewModel>();
+            container.RegisterType<IProductFormWindowViewModel, ProductFormWindowViewModel>();
 
             //Repositories
             container.RegisterType<IProductRepository, ProductRepository>();
@@ -37,7 +37,7 @@ namespace WPFSample.App
 
             var inicialWindow = container.Resolve<ProductFormWindow>();
 
-            //inicialWindow.Show();
+            inicialWindow.Show();
         }
     }
 }

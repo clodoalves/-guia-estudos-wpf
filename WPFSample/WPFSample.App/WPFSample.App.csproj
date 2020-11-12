@@ -192,6 +192,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\PageTokens.cs" />
+    <Compile Include="ViewModels\IProductFormWindowViewModel.cs" />
     <Compile Include="ViewModels\ProductFormWindowViewModel.cs" />
     <Compile Include="ViewModels\ProductListItemViewModel.cs" />
     <Compile Include="ViewModels\ProductListPageViewModel.cs" />
