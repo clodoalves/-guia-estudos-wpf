@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using WPFSample.App.ViewModels;
 using WPFSample.App.Views;
+using WPFSample.Repository.Context;
 using WPFSample.Repository.Contract;
 using WPFSample.Repository.Implementation;
 using WPFSample.Service.Contract;
@@ -20,11 +21,17 @@ namespace WPFSample.App
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
             IUnityContainer container = new UnityContainer();
+
+            //criacao de banco de dados
+            using (var db = new WPFSampleDb())
+            {
+                await db.Database.EnsureCreatedAsync();
+            }
 
             //View Models
             container.RegisterType<IProductFormWindowViewModel, ProductFormWindowViewModel>();

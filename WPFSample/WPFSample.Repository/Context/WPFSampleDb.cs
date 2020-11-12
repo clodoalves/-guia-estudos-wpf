@@ -14,7 +14,7 @@ namespace WPFSample.Repository.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("DataSource=data.db");
+            optionsBuilder.UseSqlite(@"DataSource=data.db");
         }
     }
 }
