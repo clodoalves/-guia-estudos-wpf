@@ -1,5 +1,4 @@
-﻿using Microsoft.Practices.Unity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +11,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPFSample.App.ViewModels;
 using WPFSample.App.ViewModels.Contract;
 
 namespace WPFSample.App.Views
 {
     /// <summary>
-    /// Interaction logic for ProductFormWindow.xaml
+    /// Lógica interna para ProductsWindow.xaml
     /// </summary>
-    public partial class ProductFormWindow : Window
-    {    
-        public ProductFormWindow(IProductFormWindowViewModel viewModel)
+    public partial class ProductsWindow : Window
+    {
+        public ProductsWindow(IProductListWindowViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;

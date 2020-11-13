@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFSample.App.ViewModels
+namespace WPFSample.App.ViewModels.Implementation
 {
     public class ViewModelBaseImp : INotifyPropertyChanged, IDisposable
     {

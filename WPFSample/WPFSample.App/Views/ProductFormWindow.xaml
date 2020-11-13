@@ -3,60 +3,50 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ViewModels="clr-namespace:WPFSample.App.ViewModels"
+        xmlns:ViewModels="clr-namespace:WPFSample.App.ViewModels.Implementation"
         mc:Ignorable="d"
-        Title="ProductFormWindow" Height="450" Width="800">
+        Title="ProductFormWindow" Height="340" Width="500">
 
     <Window.Resources>
         <ViewModels:ProductFormWindowViewModel x:Key="ProductForm">
-            
+
         </ViewModels:ProductFormWindowViewModel>
-        
+
     </Window.Resources>
-   
+
     <!--<Grid DataContext="{Binding Source={StaticResource ResourceKey=ProductForm}}"-->
-    <Grid
+    <Grid Margin="0,40,0,0"
         HorizontalAlignment="Stretch" 
-        VerticalAlignment="Center">
+        VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <!--<RowDefinition Height="20"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="20"/>-->
+
         </Grid.RowDefinitions>
 
-        <StackPanel 
-            VerticalAlignment="Center"
-            Margin="0,0,50,0"
-            MaxWidth="400">
-            
-            <StackPanel.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="FontSize" Value="18"></Setter>
-                </Style>
-                <Style TargetType="TextBox" x:Name="TextBoxStyle">
-                    <Setter Property="Margin" Value="0,0,0,10"/>
-                    <Setter Property="Height" Value="20"/>
-                </Style>
-                <Style TargetType="Button">
-                    <Setter Property="Height" Value="30"/>
-                    <Setter Property="Margin" Value="0,10,0,0"/>
-                </Style>
-                
-            </StackPanel.Resources>
+        <DockPanel>
+            <Border DockPanel.Dock="Top" 
+                    Style="{StaticResource borderStyle}" 
+                    x:Name="borderProduct" >
+                <TextBlock Text="New Product" Style="{StaticResource textBlockStyle}"/>
+            </Border>
 
-            <TextBlock Text="New Product" FontSize="30"  Margin="0,0,0,20"/>
-            
-            <TextBlock Text="Description" />
-            <TextBox Text="{Binding Description}" />
+            <Border Style="{StaticResource borderGrid}">
+                <StackPanel>
+                    <TextBlock Text="Description"  Style="{StaticResource textBlockLabelStyle}"/>
+                    <TextBox Text="{Binding Description}" Style="{StaticResource textBoxStyle}" />
 
-            <TextBlock Text="Quantity" />
-            <TextBox  Text="{Binding Quantity}"/>
+                    <TextBlock Text="Quantity" Style="{StaticResource textBlockLabelStyle}"/>
+                    <TextBox  Text="{Binding Quantity}" Style="{StaticResource textBoxStyle}"/>
 
-            <TextBlock Text="Price"  />
-            <TextBox  Text="{Binding Price}"/>
+                    <TextBlock Text="Price" Style="{StaticResource textBlockLabelStyle}" />
+                    <TextBox  Text="{Binding Price}" Style="{StaticResource textBoxStyle}"/>
 
-            <Button Content="Save" HorizontalAlignment="Stretch" Command="{Binding AddProduct}"
-                    CommandParameter="{Binding}"/>
-        </StackPanel>
+                    <Button Content="Save" 
+                            HorizontalAlignment="Stretch" 
+                            Command="{Binding AddProduct}"
+                            Style="{StaticResource btnForm}"
+                            CommandParameter="{Binding}"/>
+                </StackPanel>
+            </Border>
+        </DockPanel>
     </Grid>
 </Window>

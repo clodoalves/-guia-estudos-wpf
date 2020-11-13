@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WPFSample.App.ViewModels.Contract;
 using WPFSample.Domain;
 using WPFSample.Service.Contract;
 
-namespace WPFSample.App.ViewModels
+namespace WPFSample.App.ViewModels.Implementation
 {
     public class ProductFormWindowViewModel : BindableBase, IProductFormWindowViewModel
     {

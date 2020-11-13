@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFSample.App.ViewModels
+namespace WPFSample.App.ViewModels.Contract
 {
     public interface IProductFormWindowViewModel
     {

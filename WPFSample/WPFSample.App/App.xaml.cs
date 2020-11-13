@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using WPFSample.App.ViewModels;
+using WPFSample.App.ViewModels.Contract;
+using WPFSample.App.ViewModels.Implementation;
 using WPFSample.App.Views;
 using WPFSample.Repository.Context;
 using WPFSample.Repository.Contract;
@@ -35,6 +37,7 @@ namespace WPFSample.App
 
             //View Models
             container.RegisterType<IProductFormWindowViewModel, ProductFormWindowViewModel>();
+            container.RegisterType<IProductListWindowViewModel, ProductListWindowViewModel>();
 
             //Repositories
             container.RegisterType<IProductRepository, ProductRepository>();

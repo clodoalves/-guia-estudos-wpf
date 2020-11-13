@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Prism.Mvvm;
+using WPFSample.App.ViewModels.Contract;
 using WPFSample.Service.Contract;
 
-namespace WPFSample.App.ViewModels
+namespace WPFSample.App.ViewModels.Implementation
 {
-    public class ProductListItemViewModel : BindableBase
+    public class ProductListItemViewModel : BindableBase, IProductListWindowViewModel
     {
-        private readonly IProductService productService;
+        private readonly IProductService _productService;
 
         public ProductListItemViewModel(IProductService productService)
         {
-            this.productService = productService;
+            this._productService = productService;
         }
         
         public int Code { get; set; }
