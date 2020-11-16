@@ -1,4 +1,4 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +13,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPFSample.App.ViewModels;
-using WPFSample.App.ViewModels.Contract;
 
-namespace WPFSample.App.Views
+namespace WPFSample.App
 {
     /// <summary>
-    /// Interaction logic for ProductFormWindow.xaml
+    /// Lógica interna para AppShell.xaml
     /// </summary>
-    public partial class ProductFormWindow : UserControl
-    {    
-        public ProductFormWindow(IProductFormWindowViewModel viewModel)
+    public partial class AppShell : Window
+    {
+
+        public AppShell(IRegionManager regionManager)
         {
             InitializeComponent();
-            DataContext = viewModel;
+            DataContext = new AppShellViewModel();
         }
     }
 }

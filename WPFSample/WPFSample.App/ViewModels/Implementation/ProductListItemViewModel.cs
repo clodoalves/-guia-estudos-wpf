@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Practices.ServiceLocation;
+using Prism.Commands;
 using Prism.Mvvm;
-using WPFSample.App.ViewModels.Contract;
+using Prism.Regions;
+using System.Windows.Input;
 using WPFSample.Service.Contract;
 
 namespace WPFSample.App.ViewModels.Implementation
 {
-    public class ProductListItemViewModel : BindableBase, IProductListWindowViewModel
+    public class ProductListItemViewModel : BindableBase
     {
         private readonly IProductService _productService;
 
         public ProductListItemViewModel(IProductService productService)
         {
-            this._productService = productService;
+            _productService = productService;
         }
-        
-        public int Code { get; set; }
-        private string _descricao;
 
+        public int Id { get; set; }
+
+        private string _descricao;
         public string Description
         {
             get { return _descricao; }
@@ -35,11 +33,21 @@ namespace WPFSample.App.ViewModels.Implementation
         }
 
         private double _price;
-
         public double Price
         {
             get { return _price; }
             set { SetProperty(ref _price, value); }
         }
+
+        private DelegateCommand _selectProduct;
+
+        public DelegateCommand SelectProduct => _selectProduct ?? (_selectProduct = new DelegateCommand(ExecuteSelectProduct));
+
+        private void ExecuteSelectProduct()
+        {
+            RegionManager.RequestNavigate("MainRegion", $"ProductFormWindow?parameter={Id}");
+        }
+
+        IRegionManager RegionManager { get { return ServiceLocator.Current.GetInstance<IRegionManager>(); } }
     }
 }

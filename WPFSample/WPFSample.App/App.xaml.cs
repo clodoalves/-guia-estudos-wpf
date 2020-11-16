@@ -1,4 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
+using Prism.Regions;
+using Prism.Unity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,6 +8,10 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
+using WPFSample.App.Configuration;
+using WPFSample.App.Helpers;
 using WPFSample.App.ViewModels;
 using WPFSample.App.ViewModels.Contract;
 using WPFSample.App.ViewModels.Implementation;
@@ -27,27 +33,13 @@ namespace WPFSample.App
         {
             base.OnStartup(e);
 
-            IUnityContainer container = new UnityContainer();
-
             //criacao de banco de dados
             using (var db = new WPFSampleDb())
             {
                 await db.Database.EnsureCreatedAsync();
             }
 
-            //View Models
-            container.RegisterType<IProductFormWindowViewModel, ProductFormWindowViewModel>();
-            container.RegisterType<IProductListWindowViewModel, ProductListWindowViewModel>();
-
-            //Repositories
-            container.RegisterType<IProductRepository, ProductRepository>();
-
-            //Services
-            container.RegisterType<IProductService, ProductService>();
-
-            var inicialWindow = container.Resolve<ProductFormWindow>();
-
-            inicialWindow.Show();
+            new Bootstrapper().Run();
         }
     }
 }

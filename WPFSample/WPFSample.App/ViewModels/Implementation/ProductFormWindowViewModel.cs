@@ -1,31 +1,30 @@
-﻿using Prism.Commands;
+﻿using Microsoft.Practices.ServiceLocation;
+using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 using WPFSample.App.ViewModels.Contract;
 using WPFSample.Domain;
 using WPFSample.Service.Contract;
 
 namespace WPFSample.App.ViewModels.Implementation
 {
-    public class ProductFormWindowViewModel : BindableBase, IProductFormWindowViewModel
+    public class ProductFormWindowViewModel : BindableBase, INavigationAware, IProductFormWindowViewModel
     {
         private readonly IProductService _productService;
-
-        public ProductFormWindowViewModel()
-        {
-
-        }
 
         public ProductFormWindowViewModel(IProductService productService)
         {
             _productService = productService;
         }
 
-        public int Code { get; set; }
+        public int Id { get; set; }
 
         private string _description;
         public string Description
@@ -50,15 +49,28 @@ namespace WPFSample.App.ViewModels.Implementation
 
         private DelegateCommand _addProduct;
 
-        public DelegateCommand AddProduct => _addProduct ?? (_addProduct = new DelegateCommand(ExecuteAddProduct));
-
-        private async void ExecuteAddProduct()
+        public DelegateCommand AddProduct => _addProduct ?? (_addProduct = new DelegateCommand(ExecuteUpdateOrAddProduct));
+                                        
+        private async void ExecuteUpdateOrAddProduct()
         {
-            Product product = BindProductObject();
-            await _productService.AddProductAsync(product);
+            if (Id != 0)
+            {
+                Product product = await _productService.GetProductById(Id);
+
+                product.Description = Description;
+                product.Price = Price;
+                product.Quantity = Quantity;
+
+                await _productService.UpdateProductAsync(product);
+            }
+            else 
+            {
+                Product product = BindToProductObject();
+                await _productService.AddProductAsync(product);
+            }            
         }
 
-        private Product BindProductObject()
+        private Product BindToProductObject()
         {
             return new Product()
             {
@@ -67,6 +79,46 @@ namespace WPFSample.App.ViewModels.Implementation
                 Quantity = Quantity
             };
         }
+        public async void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            if (navigationContext.Parameters.Any())
+            {
+                int id = int.Parse(navigationContext.Parameters.First().Value.ToString());
 
+                var product = await _productService.GetProductById(id);
+
+                BindToViewModel(product);
+            }
+            else
+            {
+                ClearViewModel();
+            }
+        }
+
+        private void ClearViewModel()
+        {
+            Id = 0;
+            Description = string.Empty;
+            Price = 0;
+            Quantity = 0;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        private void BindToViewModel(Product product) 
+        {
+            Id = product.Id;
+            Description = product.Description;
+            Price = product.Price;
+            Quantity = product.Quantity;
+        }
     }
 }

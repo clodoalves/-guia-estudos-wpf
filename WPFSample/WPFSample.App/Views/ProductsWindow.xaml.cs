@@ -18,7 +18,7 @@ namespace WPFSample.App.Views
     /// <summary>
     /// Lógica interna para ProductsWindow.xaml
     /// </summary>
-    public partial class ProductsWindow : Window
+    public partial class ProductsWindow : UserControl
     {
         public ProductsWindow(IProductListWindowViewModel viewModel)
         {

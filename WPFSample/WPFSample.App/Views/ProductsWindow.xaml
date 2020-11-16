@@ -1,42 +1,66 @@
-﻿<Window x:Class="WPFSample.App.Views.ProductsWindow"
+﻿<UserControl x:Class="WPFSample.App.Views.ProductsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="using: WPFSample.App.ViewModels.Implementation"
         mc:Ignorable="d"
-        Title="Products" Height="450" Width="800">
+        xmlns:prism="http://prismlibrary.com/"
+                prism:ViewModelLocator.AutoWireViewModel="True"
+       Height="400" Width="700">
 
-    <Window.Resources>
-        <DataTemplate x:Key="ProductTemplate" DataType="viewmodels:ProductListItemViewModel">
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="500" Margin="0,0,0,20">
-                <Grid.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="FontSize" Value="20" />
-                        <Setter Property="Background" Value="DarkBlue" />
-                        <Setter Property="Foreground" Value="White" />
-                    </Style>
-                </Grid.Resources>
+    <UserControl.Resources>
+        <Style 
+            x:Key="doubleClick"
+            TargetType="{x:Type ListViewItem}">
+            <!--<EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>-->
+        </Style>
+    </UserControl.Resources>
 
-                <TextBlock Text="Id" />
-                <TextBlock Text="Description"/>
-                <TextBlock Text="Price"/>
+    <DockPanel>
+        <Border DockPanel.Dock="Top"    
+                x:Name="MainBorder"
+                 Style="{StaticResource borderStyle}">
+            <TextBlock x:Name="tituloPrincipal" Text="Products"  Style="{StaticResource textBlockStyle}"/>
+        </Border>
+        <Border DockPanel.Dock="Top" x:Name="bordaListagem"
+                Style="{StaticResource borderGrid}">
+            <ListView 
+                x:Name="products"
+                ItemContainerStyle="{StaticResource ResourceKey=doubleClick}"
+                ItemsSource="{Binding Items}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID"
+                          Width="100"
+                          TextBlock.TextAlignment="Center"               
+                          DisplayMemberBinding="{Binding Id}"/>
 
-                <StackPanel VerticalAlignment="Bottom">
-                    <TextBlock  Text="{Binding Id}"/>
-                    <TextBlock  Text="{Binding Description}" />
-                    <TextBlock >
-                        <Run Text="R$"/>
-                        <Run Text="{Binding Price}"/>
-                    </TextBlock>
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
-    </Window.Resources>
+                        <GridViewColumn Header="Nome"
+                          Width="400"
+                          TextBlock.TextAlignment="Center"               
+                          DisplayMemberBinding="{Binding Description}"/>
 
-    <Grid>
-        <!--<ListView ItemsSource="{Binding Items}" ItemsPanel="ProductTemplate">
-        </ListView>-->
-    </Grid>
-    
-</Window>
+                        <GridViewColumn Header="Price"
+                          Width="120"
+                          TextBlock.TextAlignment="Center"               
+                          DisplayMemberBinding="{Binding Price}"/>
+
+                        <GridViewColumn Header="Actions" Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                       Content="Edit"
+                                       Margin="0"
+                                       VerticalAlignment="Center"
+                                       Command="{Binding SelectProduct}"
+                                       CommandParameter="{Binding Id}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
+    </DockPanel>
+</UserControl>
