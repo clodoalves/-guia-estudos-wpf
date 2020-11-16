@@ -10,5 +10,12 @@ namespace WPFSample.Service.Contract
     public interface IProductService
     {
         Task AddProductAsync(Product product);
+
+        Task<IList<Product>> GetAllProducts();
+
+        Task<Product> GetProductById(int id);
+        Task UpdateProductAsync(Product product);
+
+        Task DeleteProductAsync(int id);
     }
 }

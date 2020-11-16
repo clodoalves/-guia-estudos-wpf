@@ -37,7 +37,7 @@
                           DisplayMemberBinding="{Binding Id}"/>
 
                         <GridViewColumn Header="Nome"
-                          Width="400"
+                          Width="300"
                           TextBlock.TextAlignment="Center"               
                           DisplayMemberBinding="{Binding Description}"/>
 
@@ -46,7 +46,7 @@
                           TextBlock.TextAlignment="Center"               
                           DisplayMemberBinding="{Binding Price}"/>
 
-                        <GridViewColumn Header="Actions" Width="80">
+                        <GridViewColumn Header="" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button
@@ -54,6 +54,19 @@
                                        Margin="0"
                                        VerticalAlignment="Center"
                                        Command="{Binding SelectProduct}"
+                                       CommandParameter="{Binding Id}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="" Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                       Content="Delete"
+                                       Margin="0"
+                                       VerticalAlignment="Center"
+                                       Command="{Binding DeleteProduct}"
                                        CommandParameter="{Binding Id}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

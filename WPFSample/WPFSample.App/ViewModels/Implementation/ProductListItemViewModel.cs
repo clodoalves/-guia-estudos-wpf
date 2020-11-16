@@ -40,12 +40,21 @@ namespace WPFSample.App.ViewModels.Implementation
         }
 
         private DelegateCommand _selectProduct;
-
         public DelegateCommand SelectProduct => _selectProduct ?? (_selectProduct = new DelegateCommand(ExecuteSelectProduct));
 
+        private DelegateCommand _deleteProduct;
+        public DelegateCommand DeleteProduct => _deleteProduct ?? (_deleteProduct = new DelegateCommand(ExecuteDeleteProduct));
         private void ExecuteSelectProduct()
         {
             RegionManager.RequestNavigate("MainRegion", $"ProductFormWindow?parameter={Id}");
+        }
+
+        private void ExecuteDeleteProduct() 
+        {
+            _productService.DeleteProductAsync(Id);
+
+            RegionManager.RequestNavigate("MainRegion", "ProductsWindow");
+
         }
 
         IRegionManager RegionManager { get { return ServiceLocator.Current.GetInstance<IRegionManager>(); } }
