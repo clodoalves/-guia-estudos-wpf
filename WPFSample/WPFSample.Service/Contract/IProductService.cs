@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WPFSample.Domain;
+using System.IO;
 
 namespace WPFSample.Service.Contract
 {
     public interface IProductService
     {
-        Task AddProductAsync(Product product);
+        Task AddProductAsync(Product product, IList<FileStream> filesWindow);
 
         Task<IList<Product>> GetAllProducts();
 

@@ -42,6 +42,7 @@ namespace WPFSample.App.Configuration
 
             //Services
             Container.RegisterType<IProductService, ProductService>();
+
         }       
     }
 }

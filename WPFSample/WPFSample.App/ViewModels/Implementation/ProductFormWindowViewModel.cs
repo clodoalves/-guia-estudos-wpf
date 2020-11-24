@@ -1,9 +1,12 @@
 ﻿using Microsoft.Practices.ServiceLocation;
+using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,7 @@ using System.Windows.Navigation;
 using WPFSample.App.ViewModels.Contract;
 using WPFSample.Domain;
 using WPFSample.Service.Contract;
+
 
 namespace WPFSample.App.ViewModels.Implementation
 {
@@ -47,6 +51,13 @@ namespace WPFSample.App.ViewModels.Implementation
             set { SetProperty(ref _price, value); }
         }
 
+        private ObservableCollection<FileStream> images;
+        public ObservableCollection<FileStream> Images
+        {
+            get { return images; }
+            set { SetProperty(ref images, value); }
+        }
+
         private DelegateCommand _addProduct;
 
         public DelegateCommand AddProduct => _addProduct ?? (_addProduct = new DelegateCommand(ExecuteUpdateOrAddProduct));
@@ -66,8 +77,31 @@ namespace WPFSample.App.ViewModels.Implementation
             else 
             {
                 Product product = BindToProductObject();
-                await _productService.AddProductAsync(product);
-            }            
+                await _productService.AddProductAsync(product, Images);
+            }
+
+            RegionManager.RequestNavigate("MainRegion", "ProductsWindow");
+        }
+
+        private DelegateCommand _addImages;
+
+        public DelegateCommand AddImage => _addImages ?? (_addImages = new DelegateCommand(ExecuteAddImages));
+
+        private void ExecuteAddImages() 
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            //openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog().GetValueOrDefault()) 
+            {
+                foreach (string fileName in openFileDialog.FileNames)
+                {
+                    FileStream filestream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+
+                    images.Add(filestream);       
+                }
+            }
         }
 
         private Product BindToProductObject()
@@ -93,6 +127,8 @@ namespace WPFSample.App.ViewModels.Implementation
             {
                 ClearViewModel();
             }
+
+            Images = new ObservableCollection<FileStream>();
         }
 
         private void ClearViewModel()
@@ -102,7 +138,6 @@ namespace WPFSample.App.ViewModels.Implementation
             Price = 0;
             Quantity = 0;
         }
-
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
 
@@ -112,7 +147,6 @@ namespace WPFSample.App.ViewModels.Implementation
         {
             return true;
         }
-
         private void BindToViewModel(Product product) 
         {
             Id = product.Id;
@@ -120,5 +154,7 @@ namespace WPFSample.App.ViewModels.Implementation
             Price = product.Price;
             Quantity = product.Quantity;
         }
+
+        IRegionManager RegionManager { get { return ServiceLocator.Current.GetInstance<IRegionManager>(); } }
     }
 }

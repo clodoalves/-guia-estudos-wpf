@@ -7,13 +7,21 @@
         mc:Ignorable="d"
          Height="400" Width="700" MaxHeight="400">
 
-
+    <UserControl.Resources>
+ 
+    </UserControl.Resources>
+       
     <!--<Grid DataContext="{Binding Source={StaticResource ResourceKey=ProductForm}}"-->
     <Grid Margin="0,0,0,0"
         HorizontalAlignment="Stretch" 
         VerticalAlignment="Stretch">
-     
-        <DockPanel>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <DockPanel Grid.Column="0">
             <Border DockPanel.Dock="Top" 
                     Style="{StaticResource borderStyle}" 
                     x:Name="borderProduct" >
@@ -39,5 +47,32 @@
                 </StackPanel>
             </Border>
         </DockPanel>
+            <StackPanel Grid.Column="1">
+                <Button Content="Add Image" Command="{Binding AddImage}"  
+                    Style="{StaticResource btnUpload}"/>
+            <ScrollViewer>
+                <ListView x:Name="products" ItemsSource="{Binding Images}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name"
+                                        Width="280">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Name}" Width="100" Height="100"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+        </StackPanel>
     </Grid>
 </UserControl>
