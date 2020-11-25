@@ -10,7 +10,7 @@ namespace WPFSample.App.ViewModels
         {
             ViewProductFormCommand = new DelegateCommand(ViewProductFormAction);
             ViewProductsCommand = new DelegateCommand(ViewProductsAction);
-            ViewEditProductCommand = new DelegateCommand(ViewEditProductAction);
+            ViewShopCommand = new DelegateCommand(ViewShopAction);
         }
         private void ViewProductFormAction()
         {
@@ -25,13 +25,13 @@ namespace WPFSample.App.ViewModels
                 var result = nr.Result;
             });
         }
-        private void ViewEditProductAction() 
+        private void ViewShopAction() 
         {
-            RegionManager.RequestNavigate("MainRegion", "ProductsWindow");
+            RegionManager.RequestNavigate("MainRegion", "ShopWindow");
         }
         public DelegateCommand ViewProductFormCommand { get; }
         public DelegateCommand ViewProductsCommand { get; }
-        public DelegateCommand ViewEditProductCommand { get; }
+        public DelegateCommand ViewShopCommand { get; }
         IRegionManager RegionManager { get { return ServiceLocator.Current.GetInstance<IRegionManager>(); } }
     }
 }

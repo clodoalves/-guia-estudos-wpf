@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:prism="http://prismlibrary.com/"
                 prism:ViewModelLocator.AutoWireViewModel="True"
-       Height="400" Width="700">
+       Height="600" Width="700">
 
     <UserControl.Resources>
         <Style 
@@ -31,8 +31,8 @@
               
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
                     </Style>
                 </ListView.ItemContainerStyle>
 

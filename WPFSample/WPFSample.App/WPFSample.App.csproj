@@ -216,14 +216,20 @@
     <Compile Include="ViewModels\Contract\IProductFormWindowViewModel.cs" />
     <Compile Include="ViewModels\Contract\IProductListItemViewModel.cs" />
     <Compile Include="ViewModels\Contract\IProductListWindowViewModel.cs" />
+    <Compile Include="ViewModels\Contract\IShopWindowViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ProductFormWindowViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ProductListItemViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ProductListWindowViewModel.cs" />
+    <Compile Include="ViewModels\Implementation\ShopItemViewModel.cs" />
+    <Compile Include="ViewModels\Implementation\ShopWindowViewModel.cs" />
     <Compile Include="Views\ProductFormWindow.xaml.cs">
       <DependentUpon>ProductFormWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductsWindow.xaml.cs">
       <DependentUpon>ProductsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShopWindow.xaml.cs">
+      <DependentUpon>ShopWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AppShell.xaml">
       <SubType>Designer</SubType>
@@ -250,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProductsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShopWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -38,7 +38,8 @@
 
             <TextBlock Text="WPFSample" Style="{StaticResource TitleApp}"/>
             <Button Content="List Products" Command="{Binding ViewProductsCommand}" Style="{StaticResource FirstButton}"/>
-            <Button Content="Add Product" Command="{Binding ViewProductFormCommand}" Style="{StaticResource AnotherButton}" CommandParameter="Teste"/>
+            <Button Content="Add Product" Command="{Binding ViewProductFormCommand}" Style="{StaticResource AnotherButton}"/>
+            <Button Content="Shop" Command="{Binding ViewShopCommand}" Style="{StaticResource AnotherButton}"/>
         </StackPanel>
 
 

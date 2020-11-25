@@ -152,6 +152,8 @@
   <ItemGroup>
     <Compile Include="Context\WPFSampleDb.cs" />
     <Compile Include="Contract\IProductRepository.cs" />
+    <Compile Include="Contract\IProductImageRepository.cs" />
+    <Compile Include="Implementation\ProductImageRepository.cs" />
     <Compile Include="Implementation\ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ViewModels="clr-namespace:WPFSample.App.ViewModels.Implementation"
         mc:Ignorable="d"
-         Height="400" Width="700" MaxHeight="400">
+         Height="600" Width="700">
 
     <UserControl.Resources>
  
@@ -25,7 +25,7 @@
             <Border DockPanel.Dock="Top" 
                     Style="{StaticResource borderStyle}" 
                     x:Name="borderProduct" >
-                <TextBlock Text="New Product" Style="{StaticResource textBlockStyle}"/>
+                <TextBlock Text="Product Form" Style="{StaticResource textBlockStyle}"/>
             </Border>
 
             <Border Style="{StaticResource borderGrid}">
@@ -43,7 +43,7 @@
                     <TextBlock Text="Price" Style="{StaticResource textBlockLabelStyle}" />
                     <TextBox  Text="{Binding Price, Mode=TwoWay}" Style="{StaticResource textBoxStyle}"/>
 
-                    <Button Content="Save" Margin="0,10,0,0"
+                    <Button Content="Save" Margin="0,25,0,0"
                             HorizontalAlignment="Stretch" 
                             Command="{Binding AddProduct}"
                             Style="{StaticResource btnForm}"

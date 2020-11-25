@@ -12,10 +12,12 @@ namespace WPFSample.Service.Implementation
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IProductImageRepository _productImageRepository;
 
-        public ProductService(IProductRepository productRepository)
+        public ProductService(IProductRepository productRepository, IProductImageRepository productImageRepository)
         {
             _productRepository = productRepository;
+            _productImageRepository = productImageRepository;
         }
 
         public async Task AddProductAsync(Product product, IList<FileStream> filesWindow)
@@ -24,10 +26,10 @@ namespace WPFSample.Service.Implementation
 
             await _productRepository.AddProductAsync(product);
 
-            SaveFiles(product, filesWindow);
+            SaveImages(product, filesWindow);
         }
 
-        private static void SaveFiles(Product product, IList<FileStream> filesWindow)
+        private static void SaveImages(Product product, IList<FileStream> filesWindow)
         {
             string rootPath = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -76,6 +78,25 @@ namespace WPFSample.Service.Implementation
         public async Task UpdateProductAsync(Product product)
         {
             await _productRepository.UpdateProductAsync(product);
+        }
+
+        public async Task<string> GetPathFirstImage(int idProduct) 
+        {
+            string filePath = string.Empty;
+
+            var productImage =  await _productImageRepository.GetFirstImage(idProduct);
+
+            if (productImage != null)
+            {
+                string rootPath = $"{AppDomain.CurrentDomain.BaseDirectory}/{idProduct}";
+
+                if (Directory.Exists(rootPath)) 
+                {
+                    filePath = $"{rootPath}/{productImage.Path}";                    
+                }                
+            }
+
+            return filePath;
         }
     }
 }

@@ -10,5 +10,6 @@ namespace WPFSample.Domain
     {
         public int Id { get; set; }
         public string Path { get; set; }
+        public virtual int ProductId { get; set; }
     }
 }

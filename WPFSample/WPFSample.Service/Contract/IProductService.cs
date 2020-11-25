@@ -15,8 +15,13 @@ namespace WPFSample.Service.Contract
         Task<IList<Product>> GetAllProducts();
 
         Task<Product> GetProductById(int id);
+
         Task UpdateProductAsync(Product product);
 
         Task DeleteProductAsync(int id);
+
+        //Task<ProductImage> GetFirstImage(int idProduct);
+
+        Task<string> GetPathFirstImage(int idProduct);
     }
 }
