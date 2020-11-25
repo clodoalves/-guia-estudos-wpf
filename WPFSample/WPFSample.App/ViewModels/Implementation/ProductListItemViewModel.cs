@@ -19,7 +19,7 @@ namespace WPFSample.App.ViewModels.Implementation
         public int Id { get; set; }
 
         private string _descricao;
-        public string Description
+        public string Title
         {
             get { return _descricao; }
             set { SetProperty(ref _descricao, value); }

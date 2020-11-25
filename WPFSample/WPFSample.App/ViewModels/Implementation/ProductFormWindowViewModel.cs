@@ -28,7 +28,15 @@ namespace WPFSample.App.ViewModels.Implementation
             _productService = productService;
         }
 
+        #region Properties
         public int Id { get; set; }
+
+        private string _title;
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
 
         private string _description;
         public string Description
@@ -58,48 +66,32 @@ namespace WPFSample.App.ViewModels.Implementation
             set { SetProperty(ref images, value); }
         }
 
-        private DelegateCommand _addProduct;
+        #endregion
 
+        #region Delegate Commands 
         public DelegateCommand AddProduct => _addProduct ?? (_addProduct = new DelegateCommand(ExecuteUpdateOrAddProduct));
-                                        
-        private async void ExecuteUpdateOrAddProduct()
-        {
-            if (Id != 0)
-            {
-                Product product = await _productService.GetProductById(Id);
 
-                product.Description = Description;
-                product.Price = Price;
-                product.Quantity = Quantity;
-
-                await _productService.UpdateProductAsync(product);
-            }
-            else 
-            {
-                Product product = BindToProductObject();
-                await _productService.AddProductAsync(product, Images);
-            }
-
-            RegionManager.RequestNavigate("MainRegion", "ProductsWindow");
-        }
-
-        private DelegateCommand _addImages;
+        private DelegateCommand _addProduct;
 
         public DelegateCommand AddImage => _addImages ?? (_addImages = new DelegateCommand(ExecuteAddImages));
 
-        private void ExecuteAddImages() 
+        private DelegateCommand _addImages;
+        #endregion
+
+        #region Private methods
+        private void ExecuteAddImages()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
             //openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
 
-            if (openFileDialog.ShowDialog().GetValueOrDefault()) 
+            if (openFileDialog.ShowDialog().GetValueOrDefault())
             {
                 foreach (string fileName in openFileDialog.FileNames)
                 {
                     FileStream filestream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
 
-                    images.Add(filestream);       
+                    images.Add(filestream);
                 }
             }
         }
@@ -108,11 +100,57 @@ namespace WPFSample.App.ViewModels.Implementation
         {
             return new Product()
             {
+                Title = Title,
                 Description = Description,
                 Price = Price,
                 Quantity = Quantity
             };
         }
+
+        private async void ExecuteUpdateOrAddProduct()
+        {
+            if (Id != 0)
+            {
+                Product product = await _productService.GetProductById(Id);
+
+                product.Title = Title;
+                product.Description = Description;
+                product.Price = Price;
+                product.Quantity = Quantity;
+
+                await _productService.UpdateProductAsync(product);
+            }
+            else
+            {
+                Product product = BindToProductObject();
+                await _productService.AddProductAsync(product, Images);
+            }
+
+            RegionManager.RequestNavigate("MainRegion", "ProductsWindow");
+        }
+
+        private void ClearViewModel()
+        {
+            Id = 0;
+            Title = string.Empty;
+            Description = string.Empty;
+            Price = 0;
+            Quantity = 0;
+        }
+
+        private void BindToViewModel(Product product)
+        {
+            Id = product.Id;
+            Title = product.Title;
+            Description = product.Description;
+            Price = product.Price;
+            Quantity = product.Quantity;
+        }
+
+        #endregion
+
+        #region Navigation
+
         public async void OnNavigatedTo(NavigationContext navigationContext)
         {
             if (navigationContext.Parameters.Any())
@@ -131,13 +169,6 @@ namespace WPFSample.App.ViewModels.Implementation
             Images = new ObservableCollection<FileStream>();
         }
 
-        private void ClearViewModel()
-        {
-            Id = 0;
-            Description = string.Empty;
-            Price = 0;
-            Quantity = 0;
-        }
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
 
@@ -147,14 +178,9 @@ namespace WPFSample.App.ViewModels.Implementation
         {
             return true;
         }
-        private void BindToViewModel(Product product) 
-        {
-            Id = product.Id;
-            Description = product.Description;
-            Price = product.Price;
-            Quantity = product.Quantity;
-        }
 
         IRegionManager RegionManager { get { return ServiceLocator.Current.GetInstance<IRegionManager>(); } }
+        #endregion
+
     }
 }

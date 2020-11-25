@@ -26,9 +26,16 @@
         <Border DockPanel.Dock="Top" x:Name="bordaListagem"
                 Style="{StaticResource borderGrid}">
             <ListView 
-                x:Name="products"
-                ItemContainerStyle="{StaticResource ResourceKey=doubleClick}"
-                ItemsSource="{Binding Items}">
+                x:Name="products"   ItemsSource="{Binding Items}">
+                <!--ItemContainerStyle="{StaticResource ResourceKey=doubleClick}"-->
+              
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID"
@@ -36,10 +43,10 @@
                           TextBlock.TextAlignment="Center"               
                           DisplayMemberBinding="{Binding Id}"/>
 
-                        <GridViewColumn Header="Nome"
+                        <GridViewColumn Header="Title"
                           Width="300"
                           TextBlock.TextAlignment="Center"               
-                          DisplayMemberBinding="{Binding Description}"/>
+                          DisplayMemberBinding="{Binding Title}"/>
 
                         <GridViewColumn Header="Price"
                           Width="120"

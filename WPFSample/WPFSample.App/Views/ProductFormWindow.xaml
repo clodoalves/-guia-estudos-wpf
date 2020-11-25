@@ -30,16 +30,20 @@
 
             <Border Style="{StaticResource borderGrid}">
                 <StackPanel>
+                    <TextBlock Text="Title" Style="{StaticResource textBlockLabelStyle}"/>
+                    <TextBox Text="{Binding Title, Mode=TwoWay}" Style="{StaticResource textBoxStyle}"/>
+                    
                     <TextBlock Text="Description"  Style="{StaticResource textBlockLabelStyle}"/>
-                    <TextBox Text="{Binding Description}" Style="{StaticResource textBoxStyle}" />
+                    <TextBox Text="{Binding Description, Mode=TwoWay}" Style="{StaticResource textBoxStyle}" 
+                             Height="80"/>
 
                     <TextBlock Text="Quantity" Style="{StaticResource textBlockLabelStyle}"/>
-                    <TextBox  Text="{Binding Quantity}" Style="{StaticResource textBoxStyle}"/>
+                    <TextBox  Text="{Binding Quantity, Mode=TwoWay}" Style="{StaticResource textBoxStyle}"/>
 
                     <TextBlock Text="Price" Style="{StaticResource textBlockLabelStyle}" />
-                    <TextBox  Text="{Binding Price}" Style="{StaticResource textBoxStyle}"/>
+                    <TextBox  Text="{Binding Price, Mode=TwoWay}" Style="{StaticResource textBoxStyle}"/>
 
-                    <Button Content="Save" 
+                    <Button Content="Save" Margin="0,10,0,0"
                             HorizontalAlignment="Stretch" 
                             Command="{Binding AddProduct}"
                             Style="{StaticResource btnForm}"
@@ -56,7 +60,6 @@
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         </Style>
-
                     </ListView.ItemContainerStyle>
 
                     <ListView.View>

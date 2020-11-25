@@ -35,8 +35,8 @@ namespace WPFSample.App.ViewModels.Implementation
         {
             return products.Select(x => new ProductListItemViewModel(_productService)
             {
-                Id = x.Id,
-                Description = x.Description,
+                Id = x.Id,                
+                Title = x.Title,
                 Price = x.Price
             }).ToList();
         }
