@@ -211,17 +211,21 @@
     </Compile>
     <Compile Include="Configuration\Bootstrapper.cs" />
     <Compile Include="Common\PageTokens.cs" />
-    <Compile Include="Helpers\ApplicationHelper.cs" />
     <Compile Include="ViewModels\AppShellViewModel.cs" />
+    <Compile Include="ViewModels\Contract\IProductDetailsWindowViewModel.cs" />
     <Compile Include="ViewModels\Contract\IProductFormWindowViewModel.cs" />
     <Compile Include="ViewModels\Contract\IProductListItemViewModel.cs" />
     <Compile Include="ViewModels\Contract\IProductListWindowViewModel.cs" />
     <Compile Include="ViewModels\Contract\IShopWindowViewModel.cs" />
+    <Compile Include="ViewModels\Implementation\ProductDetailsWindowViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ProductFormWindowViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ProductListItemViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ProductListWindowViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ShopItemViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ShopWindowViewModel.cs" />
+    <Compile Include="Views\ProductDetailsWindow.xaml.cs">
+      <DependentUpon>ProductDetailsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProductFormWindow.xaml.cs">
       <DependentUpon>ProductFormWindow.xaml</DependentUpon>
     </Compile>
@@ -248,6 +252,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Styles\StylesProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductDetailsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -16,6 +16,7 @@ namespace WPFSample.App.ViewModels.Implementation
             _productService = productService;
         }
 
+        #region Properties
         public int Id { get; set; }
 
         private string _descricao;
@@ -39,11 +40,16 @@ namespace WPFSample.App.ViewModels.Implementation
             set { SetProperty(ref _price, value); }
         }
 
+        #endregion
+
+        #region Delegate Commands
         private DelegateCommand _selectProduct;
         public DelegateCommand SelectProduct => _selectProduct ?? (_selectProduct = new DelegateCommand(ExecuteSelectProduct));
-
         private DelegateCommand _deleteProduct;
         public DelegateCommand DeleteProduct => _deleteProduct ?? (_deleteProduct = new DelegateCommand(ExecuteDeleteProduct));
+        #endregion
+
+        #region Private Methods
         private void ExecuteSelectProduct()
         {
             RegionManager.RequestNavigate("MainRegion", $"ProductFormWindow?parameter={Id}");
@@ -56,7 +62,12 @@ namespace WPFSample.App.ViewModels.Implementation
             RegionManager.RequestNavigate("MainRegion", "ProductsWindow");
 
         }
+        #endregion
+
+        #region Navigation 
 
         IRegionManager RegionManager { get { return ServiceLocator.Current.GetInstance<IRegionManager>(); } }
+
+        #endregion
     }
 }

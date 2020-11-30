@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using Prism.Commands;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,6 +38,20 @@ namespace WPFSample.App.ViewModels.Implementation
         {
             get { return _pathImage; }
             set { SetProperty(ref _pathImage, value); }
+        }
+
+        #endregion
+
+
+        #region Delegate Commands 
+
+        public DelegateCommand DetailsProductCommand => _detailsProductCommand ?? (_detailsProductCommand = new DelegateCommand(ExecuteDetailsCommand));
+
+        private DelegateCommand _detailsProductCommand;
+
+        private void ExecuteDetailsCommand() 
+        {
+        
         }
 
         #endregion

@@ -11,7 +11,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using WPFSample.App.Configuration;
-using WPFSample.App.Helpers;
 using WPFSample.App.ViewModels;
 using WPFSample.App.ViewModels.Contract;
 using WPFSample.App.ViewModels.Implementation;

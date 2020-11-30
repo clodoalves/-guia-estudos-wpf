@@ -7,15 +7,8 @@
         mc:Ignorable="d"
         xmlns:prism="http://prismlibrary.com/"
                 prism:ViewModelLocator.AutoWireViewModel="True"
-       Height="600" Width="700">
+       Height="770" Width="700" MinHeight="770" MinWidth="700">
 
-    <UserControl.Resources>
-        <Style 
-            x:Key="doubleClick"
-            TargetType="{x:Type ListViewItem}">
-            <!--<EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>-->
-        </Style>
-    </UserControl.Resources>
 
     <DockPanel>
         <Border DockPanel.Dock="Top"    

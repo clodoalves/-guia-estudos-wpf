@@ -33,11 +33,13 @@ namespace WPFSample.App.Configuration
             Container.RegisterTypeForNavigation<ProductFormWindow>("ProductFormWindow");
             Container.RegisterTypeForNavigation<ProductsWindow>("ProductsWindow");
             Container.RegisterTypeForNavigation<ShopWindow>("ShopWindow");
+            Container.RegisterTypeForNavigation<ProductDetailsWindow>("ProductDetailsWindow");
 
             //View Models
             Container.RegisterType<IProductFormWindowViewModel, ProductFormWindowViewModel>();
             Container.RegisterType<IProductListWindowViewModel, ProductListWindowViewModel>();
             Container.RegisterType<IShopWindowViewModel, ShopWindowViewModel>();
+            Container.RegisterType<IProductDetailsWindowViewModel, ProductDetailsWindowViewModel>();
 
             //Repositories
             Container.RegisterType<IProductRepository, ProductRepository>();
@@ -45,7 +47,6 @@ namespace WPFSample.App.Configuration
 
             //Services
             Container.RegisterType<IProductService, ProductService>();
-
         }       
     }
 }

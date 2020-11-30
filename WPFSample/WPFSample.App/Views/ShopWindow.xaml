@@ -8,12 +8,14 @@
              d:DesignHeight="450" d:DesignWidth="800"
                 xmlns:prism="http://prismlibrary.com/"
                 prism:ViewModelLocator.AutoWireViewModel="True"
-               Height="600" Width="700">
+               Height="750" Width="700" MinHeight="770" MinWidth="700">
 
-    <UserControl.Resources>
-
-
-    </UserControl.Resources>
+    <!--<UserControl.Resources>
+        <Style 
+            x:Key="doubleClick"
+            TargetType="{x:Type ListViewItem}">
+        </Style>
+    </UserControl.Resources>-->
 
     <Grid>
         <DockPanel>
@@ -35,7 +37,8 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="200"/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="350"/>
+                                    <ColumnDefinition Width="40" />
                                 </Grid.ColumnDefinitions>
                                 <Image Source="{Binding PathImage, Mode=OneWay}" />
                                 <StackPanel Grid.Column="1">
@@ -45,6 +48,13 @@
                                     <Run Text="{Binding Price}" />
                                     </TextBlock>
                                 </StackPanel>
+
+                                <Button Content="Details" 
+                                        Grid.Column="2" 
+                                        Width="40" 
+                                        Height="40" HorizontalAlignment="Stretch" 
+                                        VerticalAlignment="Center" 
+                                        Command="{Binding DetailsProductCommand}"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

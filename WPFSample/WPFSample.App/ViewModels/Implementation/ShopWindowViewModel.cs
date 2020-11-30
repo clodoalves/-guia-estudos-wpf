@@ -14,10 +14,12 @@ namespace WPFSample.App.ViewModels.Implementation
 {
     public class ShopWindowViewModel: BindableBase, INavigationAware, IShopWindowViewModel
     {
-        #region Services
         private readonly IProductService _productService;
-        #endregion
 
+        public ShopWindowViewModel(IProductService productService)
+        {
+            this._productService = productService;
+        }
 
         #region Properties
         private ObservableCollection<ShopItemViewModel> _itemsShop;
@@ -28,10 +30,7 @@ namespace WPFSample.App.ViewModels.Implementation
         }
         #endregion
 
-        public ShopWindowViewModel(IProductService productService)
-        {
-            this._productService = productService;
-        }
+       
 
         public async void OnNavigatedTo(NavigationContext navigationContext)
         {

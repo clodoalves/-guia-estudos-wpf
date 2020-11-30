@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ViewModels="clr-namespace:WPFSample.App.ViewModels.Implementation"
         mc:Ignorable="d"
-         Height="600" Width="700">
+         Height="770" Width="700" MinHeight="770" MinWidth="700">
 
     <UserControl.Resources>
  

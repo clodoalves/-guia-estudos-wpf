@@ -18,6 +18,12 @@ namespace WPFSample.App.ViewModels.Implementation
     {
         private readonly IProductService _productService;
 
+        public ProductListWindowViewModel(IProductService productService)
+        {
+            _productService = productService;
+        }
+
+        #region Properties
         private ObservableCollection<ProductListItemViewModel> _items;
 
         public ObservableCollection<ProductListItemViewModel> Items
@@ -26,11 +32,9 @@ namespace WPFSample.App.ViewModels.Implementation
             set { SetProperty(ref _items, value); }
         }
 
-        public ProductListWindowViewModel(IProductService productService)
-        {
-            _productService = productService;
-        }
+        #endregion
 
+        #region Private methods
         private IList<ProductListItemViewModel> BindToProductListItemViewModel(IList<Product> products) 
         {
             return products.Select(x => new ProductListItemViewModel(_productService)
@@ -40,6 +44,9 @@ namespace WPFSample.App.ViewModels.Implementation
                 Price = x.Price
             }).ToList();
         }
+        #endregion
+
+        #region Navigation 
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
@@ -58,5 +65,7 @@ namespace WPFSample.App.ViewModels.Implementation
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
         }
+
+        #endregion
     }
 }
