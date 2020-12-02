@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFSample.App.Views"
         mc:Ignorable="d"
-        Height="450" Width="800">
+        Height="750" Width="700" MinHeight="770" MinWidth="700">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <Image Source="{Binding Image}" Style="{StaticResource ImageStyle}"/>
+            <TextBlock Style="{StaticResource TextPrice}">
+                <Run  Text="R$"/>
+                <Run Text="{Binding Price}"/>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock  Text="{Binding Title}" Style="{StaticResource TextTitle}"/>
+            <TextBlock Text="{Binding Description}" Style="{StaticResource TextDescription}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

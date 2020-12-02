@@ -30,26 +30,13 @@ namespace WPFSample.App.ViewModels.Implementation
         }
         #endregion
 
-       
+        #region Navegation 
 
         public async void OnNavigatedTo(NavigationContext navigationContext)
         {
             IList<Product> products = await _productService.GetAllProducts();
 
             ItemsShop =  BindToShopItemViewModel(products);
-        }
-
-        private ObservableCollection<ShopItemViewModel> BindToShopItemViewModel(IList<Product> products)
-        {
-            var shopItems = products.Select(p => new ShopItemViewModel() 
-            { 
-              Id = p.Id,
-              Title = p.Title,
-              Price = p.Price,
-              PathImage = _productService.GetPathFirstImage(p.Id).Result
-            }).ToList();
-
-            return new ObservableCollection<ShopItemViewModel>(shopItems);
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
@@ -61,5 +48,25 @@ namespace WPFSample.App.ViewModels.Implementation
         {
             return true;
         }
+
+        #endregion
+
+        #region Private Methods
+
+        private ObservableCollection<ShopItemViewModel> BindToShopItemViewModel(IList<Product> products)
+        {
+            var shopItems = products.Select(p => new ShopItemViewModel()
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Price = p.Price,
+                PathImage = _productService.GetPathFirstImage(p.Id).Result
+            }).ToList();
+
+            return new ObservableCollection<ShopItemViewModel>(shopItems);
+        }
+
+
+        #endregion
     }
 }

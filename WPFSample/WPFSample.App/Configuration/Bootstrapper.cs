@@ -36,17 +36,17 @@ namespace WPFSample.App.Configuration
             Container.RegisterTypeForNavigation<ProductDetailsWindow>("ProductDetailsWindow");
 
             //View Models
-            Container.RegisterType<IProductFormWindowViewModel, ProductFormWindowViewModel>();
-            Container.RegisterType<IProductListWindowViewModel, ProductListWindowViewModel>();
-            Container.RegisterType<IShopWindowViewModel, ShopWindowViewModel>();
-            Container.RegisterType<IProductDetailsWindowViewModel, ProductDetailsWindowViewModel>();
+            Container.RegisterType(typeof(IProductFormWindowViewModel), typeof(ProductFormWindowViewModel));
+            Container.RegisterType(typeof(IProductListWindowViewModel), typeof(ProductListWindowViewModel));
+            Container.RegisterType(typeof(IShopWindowViewModel), typeof(ShopWindowViewModel));
+            Container.RegisterType(typeof(IProductDetailsWindowViewModel), typeof(ProductDetailsWindowViewModel));
 
             //Repositories
-            Container.RegisterType<IProductRepository, ProductRepository>();
-            Container.RegisterType<IProductImageRepository, ProductImageRepository>();
+            Container.RegisterType(typeof(IProductRepository), typeof(ProductRepository));
+            Container.RegisterType(typeof(IProductImageRepository), typeof(ProductImageRepository));
 
             //Services
-            Container.RegisterType<IProductService, ProductService>();
+            Container.RegisterType(typeof(IProductService), typeof(ProductService));
         }       
     }
 }

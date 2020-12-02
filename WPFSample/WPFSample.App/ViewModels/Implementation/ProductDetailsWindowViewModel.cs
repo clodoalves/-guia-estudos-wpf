@@ -2,10 +2,13 @@
 using Prism.Regions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WPFSample.App.ViewModels.Contract;
+using WPFSample.Domain;
 using WPFSample.Service.Contract;
 
 namespace WPFSample.App.ViewModels.Implementation
@@ -19,6 +22,40 @@ namespace WPFSample.App.ViewModels.Implementation
             this._productService = productService;
         }
 
+        #region Properties
+
+        private string _title;
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
+
+        private string _description;
+        public string Description
+        {
+            get { return _description; }
+            set { SetProperty(ref _description, value); }
+        }
+
+        private double _price;
+        public double Price
+        {
+            get { return _price; }
+            set { SetProperty(ref _price, value); }
+        }
+
+        private string _image;
+        public string Image
+        {
+            get { return _image; }
+            set { SetProperty(ref _image, value); }
+        }
+
+        #endregion
+
+        #region Navigation 
+
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return true;
@@ -28,12 +65,26 @@ namespace WPFSample.App.ViewModels.Implementation
         {
         }
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
+        public async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            if (navigationContext.Parameters != null) 
+            if (navigationContext.Parameters.Any()) 
             {
-            
+                int id = int.Parse(navigationContext.Parameters.First().Value.ToString());
+
+                var product = await _productService.GetProductById(id);
+
+                BindToViewModel(product);
             }
+        }
+
+        #endregion
+
+        private async void BindToViewModel(Product product)
+        {
+            Title = product.Title;
+            Description = product.Description;
+            Price = product.Price;
+            Image = await _productService.GetPathFirstImage(product.Id);
         }
     }
 }
