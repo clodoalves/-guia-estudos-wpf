@@ -34,7 +34,11 @@
                     <TextBox Text="{Binding Title, Mode=TwoWay}" Style="{StaticResource textBoxStyle}"/>
                     
                     <TextBlock Text="Description"  Style="{StaticResource textBlockLabelStyle}"/>
-                    <TextBox Text="{Binding Description, Mode=TwoWay}" Style="{StaticResource textBoxStyle}" 
+                    <TextBox Text="{Binding Description, Mode=TwoWay}" 
+                             Style="{StaticResource textBoxStyle}"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Visible"
                              Height="80"/>
 
                     <TextBlock Text="Quantity" Style="{StaticResource textBlockLabelStyle}"/>
