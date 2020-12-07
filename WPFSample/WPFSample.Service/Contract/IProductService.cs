@@ -23,5 +23,6 @@ namespace WPFSample.Service.Contract
         //Task<ProductImage> GetFirstImage(int idProduct);
 
         Task<string> GetPathFirstImage(int idProduct);
+        void UpdateQuantityProducts(int quantity);
     }
 }

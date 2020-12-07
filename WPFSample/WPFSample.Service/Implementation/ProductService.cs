@@ -98,5 +98,10 @@ namespace WPFSample.Service.Implementation
 
             return filePath;
         }
+
+        public void UpdateQuantityProducts(int quantity)
+        {
+            
+        }
     }
 }

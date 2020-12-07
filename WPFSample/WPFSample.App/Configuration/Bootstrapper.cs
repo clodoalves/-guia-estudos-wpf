@@ -8,6 +8,7 @@ using WPFSample.App.ViewModels.Contract;
 using WPFSample.App.ViewModels.Implementation;
 using WPFSample.Repository.Contract;
 using WPFSample.Repository.Implementation;
+using WPFSample.App.Quartz;
 
 namespace WPFSample.App.Configuration
 {
@@ -47,6 +48,13 @@ namespace WPFSample.App.Configuration
 
             //Services
             Container.RegisterType(typeof(IProductService), typeof(ProductService));
-        }       
+
+            StarterJob starter = new StarterJob(Container);
+
+            starter.UpdateQuantityProductsTrigger();
+            starter.UnlockWindowsTrigger();
+            starter.TimeoutTrigger();
+            starter.DarkModeChangeTrigger();
+        }
     }
 }

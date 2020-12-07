@@ -137,6 +137,9 @@
     <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Quartz, Version=3.2.3.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.3.2.3\lib\net461\Quartz.dll</HintPath>
+    </Reference>
     <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.0.2.669, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.2.0.2\lib\net461\SQLitePCLRaw.batteries_v2.dll</HintPath>
     </Reference>
@@ -160,6 +163,7 @@
       <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
@@ -179,6 +183,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
@@ -211,6 +216,12 @@
     </Compile>
     <Compile Include="Configuration\Bootstrapper.cs" />
     <Compile Include="Common\PageTokens.cs" />
+    <Compile Include="Quartz\Jobs\DarkModeChangeJob.cs" />
+    <Compile Include="Quartz\StarterJob.cs" />
+    <Compile Include="Quartz\Jobs\TimeoutJob.cs" />
+    <Compile Include="Quartz\Jobs\UnlockWindowsJob.cs" />
+    <Compile Include="Quartz\Jobs\UpdateQuantityProductJob.cs" />
+    <Compile Include="Quartz\JobFactory.cs" />
     <Compile Include="ViewModels\AppShellViewModel.cs" />
     <Compile Include="ViewModels\Contract\IProductDetailsWindowViewModel.cs" />
     <Compile Include="ViewModels\Contract\IProductFormWindowViewModel.cs" />
