@@ -52,6 +52,13 @@ namespace WPFSample.App.ViewModels.Implementation
             set { SetProperty(ref _image, value); }
         }
 
+        private int _rating;
+        public int Rating
+        {
+            get { return _rating; }
+            set { SetProperty(ref _rating, value); }
+        }
+      
         #endregion
 
         #region Navigation 
@@ -85,6 +92,7 @@ namespace WPFSample.App.ViewModels.Implementation
             Description = product.Description;
             Price = product.Price;
             Image = await _productService.GetPathFirstImage(product.Id);
+            Rating = 2;
         }
     }
 }

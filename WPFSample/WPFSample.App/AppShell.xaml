@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WPFSample.App"
         mc:Ignorable="d"
         Title="AppShell" Height="450" Width="930"
-        xmlns:prism="http://prismlibrary.com/">
+        xmlns:prism="http://prismlibrary.com/"
+        WindowState ="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>

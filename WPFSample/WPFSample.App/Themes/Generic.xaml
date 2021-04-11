@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:WPFSample.App.Controls">
+
+    <Style TargetType="controls:Rating">
+        <Setter Property="Background" Value="#F5BD1F"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:Rating">
+                    <StackPanel Orientation="Horizontal">
+
+                        <Button Width="20" Height="20" Background="{TemplateBinding Background}"/>
+                        <Button Width="20" Height="20" Background="LightGray" x:Name="Square2"/>
+                        <Button Width="20" Height="20" Background="LightGray" x:Name="Square3"/>
+                        <Button Width="20" Height="20" Background="LightGray" x:Name="Square4"/>
+                        <Button Width="20" Height="20" Background="LightGray" x:Name="Square5"/>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="RatingStates">
+                                <VisualState x:Name="Rating1"/>
+                                <VisualState x:Name="Rating2">
+                                    <Storyboard>
+                                        <ColorAnimation 
+                                                        To="{TemplateBinding Background}"
+                                                        Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="Square2"
+                                                       
+                                                        FillBehavior="Stop"                                                     
+                                                        Duration="0:0:2"/>
+                                        <!--<DoubleAnimation Storyboard.TargetName="Square2"
+                                        Storyboard.TargetProperty="Width"
+                                         From="20" To="100" Duration="0:0:3" />-->
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

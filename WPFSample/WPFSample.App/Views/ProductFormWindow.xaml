@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ViewModels="clr-namespace:WPFSample.App.ViewModels.Implementation"
         mc:Ignorable="d"
-         Height="770" Width="700" MinHeight="770" MinWidth="700">
+         Height="600" Width="700" MinHeight="600" MinWidth="700">
 
     <UserControl.Resources>
- 
+
     </UserControl.Resources>
-       
-    <!--<Grid DataContext="{Binding Source={StaticResource ResourceKey=ProductForm}}"-->
+    
     <Grid Margin="0,0,0,0"
         HorizontalAlignment="Stretch" 
         VerticalAlignment="Stretch">
@@ -20,19 +19,18 @@
             <ColumnDefinition Width="400"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <DockPanel Grid.Column="0">
             <Border DockPanel.Dock="Top" 
                     Style="{StaticResource borderStyle}" 
                     x:Name="borderProduct" >
                 <TextBlock Text="Product Form" Style="{StaticResource textBlockStyle}"/>
             </Border>
-
             <Border Style="{StaticResource borderGrid}">
                 <StackPanel>
                     <TextBlock Text="Title" Style="{StaticResource textBlockLabelStyle}"/>
                     <TextBox Text="{Binding Title, Mode=TwoWay}" Style="{StaticResource textBoxStyle}"/>
-                    
+
                     <TextBlock Text="Description"  Style="{StaticResource textBlockLabelStyle}"/>
                     <TextBox Text="{Binding Description, Mode=TwoWay}" 
                              Style="{StaticResource textBoxStyle}"
@@ -55,7 +53,7 @@
                 </StackPanel>
             </Border>
         </DockPanel>
-            <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1">
                 <Button Content="Add Image" Command="{Binding AddImage}"  
                     Style="{StaticResource btnUpload}"/>
             <ScrollViewer>

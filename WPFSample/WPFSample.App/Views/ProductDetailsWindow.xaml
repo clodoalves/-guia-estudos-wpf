@@ -2,26 +2,62 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFSample.App.Views"
-        mc:Ignorable="d"
-        Height="750" Width="700" MinHeight="770" MinWidth="700">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <StackPanel>
-            <Image Source="{Binding Image}" Style="{StaticResource ImageStyle}"/>
-            <TextBlock Style="{StaticResource TextPrice}">
-                <Run  Text="R$"/>
-                <Run Text="{Binding Price}"/>
-            </TextBlock>
-        </StackPanel>
-        <StackPanel Grid.Column="1">
-            <TextBlock  Text="{Binding Title}" Style="{StaticResource TextTitle}"/>
-            <TextBlock Text="{Binding Description}" Style="{StaticResource TextDescription}"/>
-        </StackPanel>
-    </Grid>
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:controls="clr-namespace:WPFSample.App.Controls"
+             mc:Ignorable="d"
+        Height="600" Width="700" MinHeight="600" MinWidth="700">
+    
+    <UserControl.Resources>
+    </UserControl.Resources>
+    
+    <DockPanel Grid.Column="0">
+        <Border DockPanel.Dock="Top"
+                    Style="{StaticResource borderStyle}"
+                    x:Name="MainBorder">
+            <TextBlock x:Name="tituloPrincipal" Text="Product Details"  Style="{StaticResource textBlockStyle}"/>
+        </Border>
+        <Border  Style="{StaticResource borderGrid}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="400"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="260"/>
+                    <RowDefinition Height="200"/>
+                </Grid.RowDefinitions>
+                
+                <!--<Button Grid.Column="1" Grid.Row="0"                         
+                        Content="Cart"
+                        Width="40"
+                        Height="40"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,20,0"/>-->
+                <StackPanel Grid.Column="0" Grid.Row="1">
+                    <Image Source="{Binding Image}" 
+                           Style="{StaticResource ImageStyle}"
+                           HorizontalAlignment="Left"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="1">
+                    <TextBlock Text="{Binding Title}" 
+                               Style="{StaticResource TextTitle}"
+                               HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding Description}"
+                       Style="{StaticResource TextDescription}"
+                       Height="80"
+                       Width="350"
+                       HorizontalAlignment="Left"/>
+                    <TextBlock 
+                        Style="{StaticResource TextPrice}"
+                        HorizontalAlignment="Left">
+                        <Run Text="R$"/>
+                        <Run Text="{Binding Price}"/>
+                    </TextBlock>
+                </StackPanel>
+                <controls:Rating Grid.Row="2" Value="{Binding Rating, Mode=OneWay}"/>
+                <!--<Button Grid.Row="2" Style="{StaticResource btnShop}"/>-->
+            </Grid>
+        </Border>
+    </DockPanel>
 </UserControl>

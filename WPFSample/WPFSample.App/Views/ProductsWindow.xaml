@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:prism="http://prismlibrary.com/"
                 prism:ViewModelLocator.AutoWireViewModel="True"
-       Height="770" Width="700" MinHeight="770" MinWidth="700">
+       Height="600" Width="700" MinHeight="600" MinWidth="700">
 
 
     <DockPanel>
