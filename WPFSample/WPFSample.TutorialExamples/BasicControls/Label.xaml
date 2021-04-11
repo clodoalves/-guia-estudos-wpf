@@ -1,0 +1,51 @@
+﻿<Window x:Class="WPFSample.TutorialExamples.BasicControls.Label"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFSample.TutorialExamples.BasicControls"
+        mc:Ignorable="d"
+        Title="Label" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock FontSize="20" FontWeight="Bold"> Basic Example </TextBlock>
+        <Label Grid.Row="1" Content="This is a Label control"></Label>
+
+        <TextBlock Grid.Row="2" FontSize="20" FontWeight="Bold">Access keys (mnemonics)</TextBlock>
+
+        <StackPanel Grid.Row="3" Margin="10">
+            <Label Content="_Name:" Target="{Binding ElementName=txtName}"></Label>
+            <TextBox Name="txtName"/>
+            <Label Content="_Mail" Target="{Binding ElementName=txtMail}"></Label>
+            <TextBox Name="txtMail"></TextBox>
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" FontSize="20" FontWeight="Bold"> Controls as Label content</TextBlock>
+
+        <StackPanel Grid.Row="5" Margin="10">
+            <Label Target="{Binding ElementName=txtName2}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_green.png" />
+                    <AccessText Text="_Name:"/>
+                </StackPanel>
+            </Label>
+            <TextBox x:Name="txtName2"/>
+            <Label Target="{Binding ElementName=txtMail2}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="http://cdn1.iconfinder.com/data/icons/fatcow/16/bullet_blue.png" />
+                    <AccessText  Text="_Mail"/>
+                </StackPanel>
+            </Label>
+            <TextBox Name="txtMail2"/>
+        </StackPanel>
+    </Grid>
+</Window>
+ 
