@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BasicControls\CheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BasicControls\Label.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,6 +85,9 @@
     </Compile>
     <Compile Include="BasicControls\Button.xaml.cs">
       <DependentUpon>Button.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BasicControls\CheckBox.xaml.cs">
+      <DependentUpon>CheckBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="BasicControls\Label.xaml.cs">
       <DependentUpon>Label.xaml</DependentUpon>
