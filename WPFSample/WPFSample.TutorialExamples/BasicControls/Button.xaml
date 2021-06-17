@@ -1,0 +1,60 @@
+﻿<Window x:Class="WPFSample.TutorialExamples.BasicControls.Button"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="TextBlock" Height="500" Width="300">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="5,2"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+
+        </Grid.RowDefinitions>
+
+        <TextBlock FontSize="20" FontWeight="Bold"> Basic Example</TextBlock>
+        <Button Grid.Row="1" Width="80" HorizontalAlignment="Left">Hello, world!</Button>
+
+        <TextBlock Grid.Row="2" FontSize="20" FontWeight="Bold">Event click</TextBlock>
+        <Button Click="Button_Click" Grid.Row="3" HorizontalAlignment="Left" Width="80">Click!</Button>
+
+        <TextBlock Grid.Row="4" FontSize="20" FontWeight="Bold">Formatted content</TextBlock>
+        <Button Grid.Row="5"  HorizontalAlignment="Left">
+            <Button.Content>
+                <TextBlock Background="Beige" Foreground="Blue" FontWeight="Bold" TextWrapping="Wrap" Text="Formatted Button"/>
+            </Button.Content>
+        </Button>
+
+        <TextBlock Grid.Row="6" FontSize="20" FontWeight="Bold"> Buttons with advanced content</TextBlock>
+        <Button Grid.Row="7" HorizontalAlignment="Left" Width="180">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>Formated</TextBlock>
+                <TextBlock Foreground="Blue" FontWeight="Bold" Margin="2,0"> Button</TextBlock>
+                <TextBlock Foreground="Gray" FontStyle="Italic">[Various]</TextBlock>
+            </StackPanel>
+        </Button>
+
+        <TextBlock Grid.Row="8" FontSize="20" FontWeight="Bold"> Buttons with Images</TextBlock>
+        <Button Grid.Row="9" HorizontalAlignment="Left" Width="140">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Images/question-icon.png" Width="20" Height="20"/>
+                <TextBlock Margin="5,0">Question</TextBlock>
+            </StackPanel>
+        </Button>
+
+    </Grid>
+</Window>
