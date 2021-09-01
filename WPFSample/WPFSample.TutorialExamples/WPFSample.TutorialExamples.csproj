@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Binding\BindingModes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -97,6 +101,9 @@
     </Compile>
     <Compile Include="BasicControls\TextBox.xaml.cs">
       <DependentUpon>TextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Binding\BindingModes.xaml.cs">
+      <DependentUpon>BindingModes.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
