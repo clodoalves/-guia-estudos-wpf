@@ -1,0 +1,83 @@
+﻿<Window x:Class="WPFSample.TutorialExamples.Binding.BindingModes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFSample.TutorialExamples.Binding"
+        mc:Ignorable="d"
+        Title="BindingModes" Height="700" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="One way mode:" Margin="5,5" FontWeight="Bold"/>
+        <StackPanel Grid.Row="1" Margin="0,0,0,10">
+            <TextBlock Text="Source Control:" Margin="5,5" FontWeight="SemiBold"/>
+            <ComboBox x:Name="Combobox1" >
+                <ComboBoxItem Content="Item1"/>
+                <ComboBoxItem Content="Item2"/>
+                <ComboBoxItem Content="Item3"/>
+                <ComboBoxItem Content="Item4"/>
+            </ComboBox>
+
+            <TextBlock Text="Target Control:" Margin="5,5" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtValue1" 
+                     Text="{Binding ElementName=Combobox1, Path=SelectedValue, Mode=OneWay}"/>
+        </StackPanel>
+
+        <TextBlock Text="One way mode:" Margin="5,5" FontWeight="Bold" Grid.Row="2"/>
+        <StackPanel Grid.Row="3" Margin="0,0,0,10">
+            <TextBlock Text="Source Control:" Margin="5,5" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtValue2"/>
+
+            <TextBlock Text="Target Control:" Margin="5,5" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtValue3" 
+                     Text="{Binding ElementName=txtValue2, Path=Text, Mode=OneWayToSource}"/>
+        </StackPanel>
+
+        <TextBlock Text="Two way mode:" Margin="5,5" FontWeight="Bold" Grid.Row="4"/>
+        <StackPanel Grid.Row="5" Margin="0,0,0,10">
+            <TextBlock Text="Source Control:" Margin="5,5" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtValue4"/>
+
+            <TextBlock Text="Target Control:" Margin="5,5" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtValue5" 
+                     Text="{Binding ElementName=txtValue4, Path=Text, Mode=TwoWay}"/>
+        </StackPanel>
+
+        <TextBlock Text="One time mode:" Margin="5,5" FontWeight="Bold" Grid.Row="6"/>
+        <StackPanel Grid.Row="7" Margin="0,0,0,10">
+            <TextBlock Text="Source Control:" Margin="5,5" FontWeight="SemiBold"/>
+            <ComboBox x:Name="Combobox2" >
+                <ComboBoxItem Content="Item1" />
+                <ComboBoxItem Content="Item2" IsSelected="True"/>
+                <ComboBoxItem Content="Item3"/>
+                <ComboBoxItem Content="Item4"/>
+            </ComboBox>
+
+            <TextBlock Text="Target Control:" Margin="5,5" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtValue6" 
+                     Text="{Binding ElementName=Combobox2, Path=SelectedValue, Mode=OneTime}"/>
+        </StackPanel>
+
+        <TextBlock Text="Default:" Margin="5,5" FontWeight="Bold" Grid.Row="8"/>
+        <StackPanel Grid.Row="9" Margin="0,0,0,10">
+            <TextBlock Text="Source Control:" Margin="5,5" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtValue7"/>
+
+            <TextBlock Text="Target Control:" Margin="5,5" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtValue8" 
+                     Text="{Binding ElementName=txtValue7, Path=Text, Mode=Default}"/>
+        </StackPanel>
+    </Grid>
+</Window>
