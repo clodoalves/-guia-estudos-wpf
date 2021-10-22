@@ -4,8 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:controls="clr-namespace:WPFSample.App.Controls"
-             mc:Ignorable="d"
-        Height="600" Width="700" MinHeight="600" MinWidth="700">
+             mc:Ignorable="d" Width="700" MinHeight="600" MinWidth="700">
     
     <UserControl.Resources>
     </UserControl.Resources>
@@ -55,8 +54,7 @@
                         <Run Text="{Binding Price}"/>
                     </TextBlock>
                 </StackPanel>
-                <controls:Rating Grid.Row="2" Value="{Binding Rating, Mode=OneWay}"/>
-                <!--<Button Grid.Row="2" Style="{StaticResource btnShop}"/>-->
+                <controls:Rating Grid.Row="2" Value="{Binding Rating}" x:Name="RatingButton" />
             </Grid>
         </Border>
     </DockPanel>

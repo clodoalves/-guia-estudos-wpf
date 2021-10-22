@@ -71,6 +71,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BasicControls\PasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BasicControls\RadioButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BasicControls\TextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -102,6 +110,12 @@
     </Compile>
     <Compile Include="BasicControls\Label.xaml.cs">
       <DependentUpon>Label.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BasicControls\PasswordBox.xaml.cs">
+      <DependentUpon>PasswordBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BasicControls\RadioButton.xaml.cs">
+      <DependentUpon>RadioButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="BasicControls\TextBlock.xaml.cs">
       <DependentUpon>TextBlock.xaml</DependentUpon>
@@ -142,6 +156,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\no.png" />
+    <Resource Include="Images\yes.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\trash-icon.png" />

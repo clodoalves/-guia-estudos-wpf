@@ -6,8 +6,8 @@
         xmlns:viewmodels="using: WPFSample.App.ViewModels.Implementation"
         mc:Ignorable="d"
         xmlns:prism="http://prismlibrary.com/"
-                prism:ViewModelLocator.AutoWireViewModel="True"
-       Height="600" Width="700" MinHeight="600" MinWidth="700">
+                prism:ViewModelLocator.AutoWireViewModel="True" 
+             Width="700" MinHeight="600" MinWidth="700">
 
 
     <DockPanel>

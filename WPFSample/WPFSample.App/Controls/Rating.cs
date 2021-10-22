@@ -21,7 +21,6 @@ namespace WPFSample.App.Controls
             this.DefaultStyleKey = typeof(Rating);
         }
 
-        // Using a DependencyProperty as the backing store for Value.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register("Value", typeof(int), typeof(Rating), new PropertyMetadata(1, OnValuePropertyChanged));
 
@@ -35,7 +34,7 @@ namespace WPFSample.App.Controls
         {
             var val = Value.Clamp(1, 5);
             var state = $"Rating{val}";
-            var result = VisualStateManager.GoToState(this, state, true);
+            VisualStateManager.GoToState(this, state, false);
         }
 
         public override void OnApplyTemplate()
@@ -49,9 +48,12 @@ namespace WPFSample.App.Controls
     {
         public static T Clamp<T>(this T val, T min, T max) where T : IComparable<T>
         {
-            if (val.CompareTo(min) < 0) return min;
-            else if (val.CompareTo(max) > 0) return max;
-            else return val;
+            if (val.CompareTo(min) < 0) 
+                return min;
+            else if 
+                (val.CompareTo(max) > 0) return max;
+            else 
+                return val;
         }
     }
 }

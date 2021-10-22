@@ -92,7 +92,7 @@ namespace WPFSample.App.ViewModels.Implementation
             Description = product.Description;
             Price = product.Price;
             Image = await _productService.GetPathFirstImage(product.Id);
-            Rating = 2;
+            Rating = 3;
         }
     }
 }
