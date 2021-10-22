@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,10 @@ namespace WPFSample.TutorialExamples.Binding
         public BindingModes()
         {
             InitializeComponent();
+
+            Queue fila = new Queue();
+
+            Stack pilha = new Stack();
         }
     }
 }

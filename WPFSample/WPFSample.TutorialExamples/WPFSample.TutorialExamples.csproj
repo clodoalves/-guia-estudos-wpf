@@ -63,6 +63,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BasicControls\Image.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BasicControls\Label.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -92,6 +96,9 @@
     </Compile>
     <Compile Include="BasicControls\CheckBox.xaml.cs">
       <DependentUpon>CheckBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BasicControls\Image.xaml.cs">
+      <DependentUpon>Image.xaml</DependentUpon>
     </Compile>
     <Compile Include="BasicControls\Label.xaml.cs">
       <DependentUpon>Label.xaml</DependentUpon>
@@ -136,9 +143,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\trash-icon.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\question-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\computer-screen-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\science-report-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
