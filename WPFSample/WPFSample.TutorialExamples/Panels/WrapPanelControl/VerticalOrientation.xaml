@@ -1,13 +1,13 @@
-﻿<Window x:Class="WPFSample.TutorialExamples.Panels.WrapPanelControl.VerticalOrientation"
+﻿<Page x:Class="WPFSample.TutorialExamples.Panels.WrapPanelControl.VerticalOrientation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFSample.TutorialExamples.Panels.WrapPanelControl"
         mc:Ignorable="d"
-        Title="Vertical Orientation" Height="300" Width="700"
+        Title="Vertical Orientation" 
         Background="LightGray">
-    <Window.Resources>
+    <Page.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"></Setter>
             <Setter Property="FontWeight" Value="Bold"></Setter>
@@ -20,7 +20,7 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Padding" Value="5"/>
         </Style>
-    </Window.Resources>
+    </Page.Resources>
 
     <WrapPanel Grid.Row="1" Orientation="Vertical">
         <Button>Test button 1</Button>
@@ -30,4 +30,4 @@
         <Button Width="200" Height="50">Test button 5</Button>
         <Button >Test button 6</Button>
     </WrapPanel>
-</Window>
+</Page>

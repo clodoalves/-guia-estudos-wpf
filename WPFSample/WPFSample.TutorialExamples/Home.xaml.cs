@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WPFSample.TutorialExamples.Panels
+namespace WPFSample.TutorialExamples
 {
     /// <summary>
-    /// Interaction logic for CanvasControl.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class CanvasControl : Page
+    public partial class Home : Page
     {
-        public CanvasControl()
+        public Home()
         {
             InitializeComponent();
         }

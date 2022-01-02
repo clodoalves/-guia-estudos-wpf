@@ -17,7 +17,7 @@ namespace WPFSample.TutorialExamples.Panels.WrapPanelControl
     /// <summary>
     /// Interaction logic for VerticalOrientation.xaml
     /// </summary>
-    public partial class VerticalOrientation : Window
+    public partial class VerticalOrientation : Page
     {
         public VerticalOrientation()
         {
