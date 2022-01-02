@@ -45,20 +45,20 @@
         <TextBlock Grid.Row="2">Setting coordinates</TextBlock>
         <Border Grid.Row="3" Style="{StaticResource CanvasBorder}">
             <Canvas>
-                <Button Canvas.Left="10" Content="Button1"/>
-                <Button Canvas.Right="10" Content="Button2"/>
-                <Button Canvas.Left="10" Canvas.Bottom="10"  Content="Button3"/>
-                <Button Canvas.Right="10" Canvas.Bottom="10" Content="Button4"/> 
+                <Ellipse   Fill="MediumSpringGreen" Canvas.Left="25" Canvas.Top="20" Width="150" Height="150"/>
+                <Rectangle Fill="Brown" Canvas.Left="25" Canvas.Top="25" Width="50" Height="50" />
+                <Rectangle Fill="Orange" Canvas.Left="50" Canvas.Top="50" Width="50" Height="50" />
+                <Rectangle Fill="Purple" Canvas.Left="75" Canvas.Top="75" Width="50" Height="50" />
             </Canvas>
         </Border>
 
         <TextBlock Grid.Column="1"> Z-Index - default </TextBlock>
         <Border Grid.Row="1" Grid.Column="1"  Style="{StaticResource CanvasBorder}">
             <Canvas>
-                <Ellipse   Fill="MediumSpringGreen" Canvas.Left="25" Canvas.Top="20" Width="150" Height="150"/>
-                <Rectangle Fill="Brown" Canvas.Left="25" Canvas.Top="25" Width="50" Height="50" />
-                <Rectangle Fill="Orange" Canvas.Left="50" Canvas.Top="50" Width="50" Height="50" />
-                <Rectangle Fill="Purple" Canvas.Left="75" Canvas.Top="75" Width="50" Height="50" />
+                <Button Canvas.Left="10" Content="Button1"/>
+                <Button Canvas.Right="10" Content="Button2"/>
+                <Button Canvas.Left="10" Canvas.Bottom="10"  Content="Button3"/>
+                <Button Canvas.Right="10" Canvas.Bottom="10" Content="Button4"/>
             </Canvas>
         </Border>
 
