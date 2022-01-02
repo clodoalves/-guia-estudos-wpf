@@ -134,6 +134,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Panels\StackPanelControl\HorizontalOrientation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panels\StackPanelControl\VerticalOrientation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Panels\WrapPanelControl\HorizontalOrientation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,6 +154,12 @@
   <ItemGroup>
     <Compile Include="Panels\CanvasControl.xaml.cs">
       <DependentUpon>CanvasControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\StackPanelControl\HorizontalOrientation.xaml.cs">
+      <DependentUpon>HorizontalOrientation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\StackPanelControl\VerticalOrientation.xaml.cs">
+      <DependentUpon>VerticalOrientation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\WrapPanelControl\HorizontalOrientation.xaml.cs">
       <DependentUpon>HorizontalOrientation.xaml</DependentUpon>
