@@ -38,5 +38,11 @@
         <TextBlock Style="{StaticResource SecondaryText}">
             <Hyperlink NavigateUri="Panels\StackPanelControl\VerticalOrientation.xaml">StackPanel - Vertical Orientation</Hyperlink>
         </TextBlock>
+        <TextBlock Style="{StaticResource SecondaryText}">
+            <Hyperlink NavigateUri="Panels\DockPanelControl.xaml">DockPanel</Hyperlink>
+        </TextBlock>
+        <TextBlock Style="{StaticResource SecondaryText}">
+            <Hyperlink NavigateUri="Panels\GridControl\Grid.xaml">Grid</Hyperlink>
+        </TextBlock>
     </StackPanel>
 </Page>
