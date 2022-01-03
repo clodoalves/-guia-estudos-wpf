@@ -44,5 +44,8 @@
         <TextBlock Style="{StaticResource SecondaryText}">
             <Hyperlink NavigateUri="Panels\GridControl\Grid.xaml">Grid</Hyperlink>
         </TextBlock>
+        <TextBlock Style="{StaticResource SecondaryText}">
+            <Hyperlink NavigateUri="Panels\GridControl\RowsColumns.xaml">Grid - Rows and Columns</Hyperlink>
+        </TextBlock>
     </StackPanel>
 </Page>
