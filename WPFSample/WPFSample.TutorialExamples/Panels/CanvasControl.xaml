@@ -7,22 +7,7 @@
         mc:Ignorable="d"
         Title="CanvasControl" WindowHeight="550" WindowWidth="470"
         Background="White">
-    <Page.Resources>
-        <Style TargetType="Border" x:Key="CanvasBorder">
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Background" Value="LightGray"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Height" Value="200"/>
-            <Setter Property="Margin" Value="0,0,30,0"/>
-        </Style>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="20"></Setter>
-            <Setter Property="FontWeight" Value="Bold"></Setter>
-        </Style>
-    </Page.Resources>
+
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
