@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       Title="RowsColumns"
       WindowWidth="600" WindowHeight="600">
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -19,14 +18,14 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Button>Button 1</Button>
-        <Button Grid.Column="1">Button 2</Button>
-        <Button Grid.Column="2">Button 3</Button>
-        <Button Grid.Row="1">Button 4</Button>
-        <Button Grid.Row="1" Grid.Column="1">Button 5</Button>
-        <Button Grid.Row="1" Grid.Column="2">Button 6</Button>
-        <Button Grid.Row="2">Button 7</Button>
-        <Button Grid.Row="2" Grid.Column="1">Button 8</Button>
-        <Button Grid.Row="2" Grid.Column="2">Button 9</Button>
+        <Button Style="{StaticResource GridButton}" >Button 1</Button>
+        <Button Style="{StaticResource GridButton}" Grid.Column="1">Button 2</Button>
+        <Button Style="{StaticResource GridButton}" Grid.Column="2">Button 3</Button>
+        <Button Style="{StaticResource GridButton}" Grid.Row="1">Button 4</Button>
+        <Button Style="{StaticResource GridButton}" Grid.Row="1" Grid.Column="1">Button 5</Button>
+        <Button Style="{StaticResource GridButton}" Grid.Row="1" Grid.Column="2">Button 6</Button>
+        <Button Style="{StaticResource GridButton}" Grid.Row="2">Button 7</Button>
+        <Button Style="{StaticResource GridButton}" Grid.Row="2" Grid.Column="1">Button 8</Button>
+        <Button Style="{StaticResource GridButton}" Grid.Row="2" Grid.Column="2">Button 9</Button>
     </Grid>
 </Page>
