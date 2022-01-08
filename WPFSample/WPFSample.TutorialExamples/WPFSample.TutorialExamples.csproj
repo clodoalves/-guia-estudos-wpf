@@ -153,6 +153,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Panels\GridControl\Units.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panels\StackPanelControl\HorizontalOrientation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -186,6 +190,9 @@
     </Compile>
     <Compile Include="Panels\GridControl\Grid.xaml.cs">
       <DependentUpon>Grid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\GridControl\Units.xaml.cs">
+      <DependentUpon>Units.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\StackPanelControl\HorizontalOrientation.xaml.cs">
       <DependentUpon>HorizontalOrientation.xaml</DependentUpon>
