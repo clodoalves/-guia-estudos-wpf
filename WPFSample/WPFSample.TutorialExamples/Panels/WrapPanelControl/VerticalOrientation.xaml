@@ -7,27 +7,12 @@
         mc:Ignorable="d"
         Title="Vertical Orientation" 
         Background="LightGray">
-    <Page.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="20"></Setter>
-            <Setter Property="FontWeight" Value="Bold"></Setter>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Margin" Value="3" />
-            <Setter Property="BorderBrush" Value="White"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Background" Value="DarkGreen"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Padding" Value="5"/>
-        </Style>
-    </Page.Resources>
-
     <WrapPanel Grid.Row="1" Orientation="Vertical">
-        <Button>Test button 1</Button>
-        <Button>Test button 2</Button>
-        <Button>Test button 3</Button>
-        <Button >Test button 4</Button>
-        <Button Width="200" Height="50">Test button 5</Button>
-        <Button >Test button 6</Button>
+        <Button Style="{StaticResource GridButton}" >Button 1</Button>
+        <Button Style="{StaticResource GridButton}" >Button 2</Button>
+        <Button Style="{StaticResource GridButton}">Button 3</Button>
+        <Button Style="{StaticResource GridButton}">Button 4</Button>
+        <Button Style="{StaticResource GridButton}" Width="200" Height="50">Button 5</Button>
+        <Button Style="{StaticResource GridButton}">Button 6</Button>
     </WrapPanel>
 </Page>

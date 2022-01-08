@@ -9,11 +9,11 @@
         Background="LightGray">
 
     <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Button>Button 1</Button>
-        <Button>Button 2</Button>
-        <Button>Button 3</Button>
-        <Button Height="40">Button 4</Button>
-        <Button>Button 5</Button>
-        <Button>Button 6</Button>
+        <Button Style="{StaticResource GridButton}">Button 1</Button>
+        <Button Style="{StaticResource GridButton}">Button 2</Button>
+        <Button Style="{StaticResource GridButton}">Button 3</Button>
+        <Button Style="{StaticResource GridButton}" Height="40">Button 4</Button>
+        <Button Style="{StaticResource GridButton}">Button 5</Button>
+        <Button Style="{StaticResource GridButton}">Button 6</Button>
     </WrapPanel>
 </Page>
