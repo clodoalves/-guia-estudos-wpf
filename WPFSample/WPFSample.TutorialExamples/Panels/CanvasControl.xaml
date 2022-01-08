@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="CanvasControl" WindowHeight="550" WindowWidth="470"
         Background="White">
-
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>

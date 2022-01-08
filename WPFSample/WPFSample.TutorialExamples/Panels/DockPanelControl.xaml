@@ -8,30 +8,6 @@
       WindowHeight="550" WindowWidth="470"
       Title="DockPanelControl"
       Background="White">
-    <Page.Resources>
-        <Style TargetType="Border" x:Key="CanvasBorder">
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Background" Value="LightGray"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Height" Value="200"/>
-            <Setter Property="Margin" Value="0,0,30,0"/>
-        </Style>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="20"></Setter>
-            <Setter Property="FontWeight" Value="Bold"></Setter>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Margin" Value="3" />
-            <Setter Property="BorderBrush" Value="White"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Background" Value="DarkGreen"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Padding" Value="5"/>
-        </Style>
-    </Page.Resources>
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -46,35 +22,33 @@
         <TextBlock>Basic Example</TextBlock>
         <Border Grid.Row="1" Style="{StaticResource CanvasBorder}">
             <DockPanel>
-                <Button DockPanel.Dock="Left">Left</Button>
-                <Button DockPanel.Dock="Top">Top</Button>
-                <Button DockPanel.Dock="Right">Rigth</Button>
-                <Button DockPanel.Dock="Bottom">Bottom</Button>
-                <Button >Center</Button>
+                <Button Style="{StaticResource GridButton}" DockPanel.Dock="Left">Left</Button>
+                <Button Style="{StaticResource GridButton}" DockPanel.Dock="Top">Top</Button>
+                <Button Style="{StaticResource GridButton}" DockPanel.Dock="Right">Rigth</Button>
+                <Button Style="{StaticResource GridButton}" DockPanel.Dock="Bottom">Bottom</Button>
+                <Button Style="{StaticResource GridButton}" >Center</Button>
             </DockPanel>
         </Border>
 
         <TextBlock Grid.Column="1">Precedence Example</TextBlock>
         <Border Grid.Row="1" Grid.Column="1"  Style="{StaticResource CanvasBorder}">
             <DockPanel>
-                <Button DockPanel.Dock="Top" Height="50">Top</Button>
-                <Button DockPanel.Dock="Bottom" Height="50">Bottom</Button>
-                <Button DockPanel.Dock="Left" Width="50">Left</Button>
-                <Button DockPanel.Dock="Right" Width="50">Right</Button>
-                <Button>Center</Button>
+                <Button Style="{StaticResource GridButton}" DockPanel.Dock="Top" Height="50">Top</Button>
+                <Button Style="{StaticResource GridButton}" DockPanel.Dock="Bottom" Height="50">Bottom</Button>
+                <Button Style="{StaticResource GridButton}" DockPanel.Dock="Left" Width="50">Left</Button>
+                <Button Style="{StaticResource GridButton}" DockPanel.Dock="Right" Width="50">Right</Button>
+                <Button Style="{StaticResource GridButton}">Center</Button>
             </DockPanel>
-
         </Border>
+        
         <TextBlock Grid.Row="2">LastChildFill</TextBlock>
         <Border Grid.Row="3" Style="{StaticResource CanvasBorder}">
             <DockPanel LastChildFill="False">
-                <Button DockPanel.Dock="Top" Height="50">Top</Button>
-                <Button DockPanel.Dock="Bottom" Height="50">Bottom</Button>
-                <Button DockPanel.Dock="Left" Width="50">Left</Button>
-
-                <Button DockPanel.Dock="Right" Width="50">Right</Button>
+                <Button Style="{StaticResource GridButton}" DockPanel.Dock="Top" Height="50">Top</Button>
+                <Button Style="{StaticResource GridButton}" DockPanel.Dock="Bottom" Height="50">Bottom</Button>
+                <Button Style="{StaticResource GridButton}" DockPanel.Dock="Left" Width="50">Left</Button>
+                <Button Style="{StaticResource GridButton}" DockPanel.Dock="Right" Width="50">Right</Button>
             </DockPanel>
         </Border>
-
     </Grid>
 </Page>
