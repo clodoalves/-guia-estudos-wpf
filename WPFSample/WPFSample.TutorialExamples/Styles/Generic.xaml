@@ -24,4 +24,12 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Padding" Value="5"/>
     </Style>
+    <Style TargetType="Button" x:Key="FormButton">
+        <Setter Property="Margin" Value="3" />
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="WhiteSmoke"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Padding" Value="5"/>
+    </Style>
 </ResourceDictionary>
