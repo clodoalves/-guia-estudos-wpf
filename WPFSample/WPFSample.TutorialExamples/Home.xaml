@@ -50,5 +50,11 @@
         <TextBlock Style="{StaticResource SecondaryText}">
             <Hyperlink NavigateUri="Panels\GridControl\Units.xaml">Grid - Units</Hyperlink>
         </TextBlock>
+        <TextBlock Style="{StaticResource SecondaryText}">
+            <Hyperlink NavigateUri="Panels\GridControl\GridSplitterVertical.xaml">GridSplitter Vertical</Hyperlink>
+        </TextBlock>
+        <TextBlock Style="{StaticResource SecondaryText}">
+            <Hyperlink NavigateUri="Panels\GridControl\GridSplitterHorizontal.xaml">GridSplitter Horizontal</Hyperlink>
+        </TextBlock>
     </StackPanel>
 </Page>

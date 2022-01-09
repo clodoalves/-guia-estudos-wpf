@@ -145,6 +145,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Panels\GridControl\GridSplitterHorizontal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\GridControl\GridSplitterVertical.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panels\GridControl\RowsColumns.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -188,6 +196,12 @@
     </Compile>
     <Compile Include="Panels\DockPanelControl.xaml.cs">
       <DependentUpon>DockPanelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\GridControl\GridSplitterHorizontal.xaml.cs">
+      <DependentUpon>GridSplitterHorizontal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\GridControl\GridSplitterVertical.xaml.cs">
+      <DependentUpon>GridSplitterVertical.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\GridControl\RowsColumns.xaml.cs">
       <DependentUpon>RowsColumns.xaml</DependentUpon>
