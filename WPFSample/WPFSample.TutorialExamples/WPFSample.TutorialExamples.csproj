@@ -153,6 +153,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Panels\GridControl\Spanning.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Panels\GridControl\Units.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,6 +194,9 @@
     </Compile>
     <Compile Include="Panels\GridControl\Grid.xaml.cs">
       <DependentUpon>Grid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\GridControl\Spanning.xaml.cs">
+      <DependentUpon>Spanning.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\GridControl\Units.xaml.cs">
       <DependentUpon>Units.xaml</DependentUpon>

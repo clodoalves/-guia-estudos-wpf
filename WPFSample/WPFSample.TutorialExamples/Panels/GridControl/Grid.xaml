@@ -26,7 +26,7 @@
                     <Button Style="{StaticResource GridButton}">Button 2</Button>
                 </Grid>
             </Border>
-            <TextBlock Grid.Column="1" Style="{StaticResource GridTextBlock}">Column definitions</TextBlock>
+            <TextBlock Style="{StaticResource GridTextBlock}" Grid.Column="1">Column definitions</TextBlock>
             <Border Grid.Row="1" Grid.Column="1"  Style="{StaticResource CanvasBorder}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -37,18 +37,18 @@
                     <Button Style="{StaticResource GridButton}" Grid.Column="1">Button 2</Button>
                 </Grid>
             </Border>
-            <TextBlock Grid.Row="2" Style="{StaticResource GridTextBlock}">Row definitions</TextBlock>
+            <TextBlock Style="{StaticResource GridTextBlock}" Grid.Row="2">Row definitions</TextBlock>
             <Border Grid.Row="3" Style="{StaticResource CanvasBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource GridButton}">Button 1</Button>
+                    <Button Style="{StaticResource GridButton}" >Button 1</Button>
                     <Button Style="{StaticResource GridButton}" Grid.Row="1">Button 2</Button>
                 </Grid>
             </Border>
-            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource GridTextBlock}">Alignment example</TextBlock>
+            <TextBlock Style="{StaticResource GridTextBlock}" Grid.Row="2" Grid.Column="1">Alignment example</TextBlock>
             <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource CanvasBorder}">
                 <Grid>
                     <Grid.ColumnDefinitions>

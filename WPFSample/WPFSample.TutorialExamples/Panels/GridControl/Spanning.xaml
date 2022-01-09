@@ -1,0 +1,65 @@
+﻿<Page x:Class="WPFSample.TutorialExamples.Panels.GridControl.Spanning"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFSample.TutorialExamples.Panels.GridControl"
+      mc:Ignorable="d" 
+      WindowHeight="450" WindowWidth="800"
+      Title="Spanning"
+      Background="White">
+    <Grid>
+        <Grid>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource GridTextBlock}">Basic Example</TextBlock>
+                <Border Grid.Row="1" Style="{StaticResource CanvasBorder}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Button Style="{StaticResource GridButton}">Button 1</Button>
+                        <Button Style="{StaticResource GridButton}" Grid.Column="1">Button 2</Button>
+                        <Button Style="{StaticResource GridButton}" Grid.Row="1" Grid.ColumnSpan="2">Button 3</Button>
+                    </Grid>
+                </Border>
+                <TextBlock Style="{StaticResource GridTextBlock}" Grid.Column="1">Another Example</TextBlock>
+                <Border Grid.Row="1" Grid.Column="1"  Style="{StaticResource CanvasBorder}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Style="{StaticResource GridButton}" Grid.ColumnSpan="2" >Button 1</Button>
+                        <Button Style="{StaticResource GridButton}" Grid.Column="3">Button 2</Button>
+                        <Button Style="{StaticResource GridButton}" Grid.Row="1">Button 3</Button>
+                        <Button Style="{StaticResource GridButton}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2">Button 4</Button>
+                        <Button Style="{StaticResource GridButton}" Grid.Column="0" Grid.Row="2">Button 5</Button>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
