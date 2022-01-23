@@ -41,7 +41,7 @@
             </DockPanel>
         </Border>
         
-        <TextBlock Style="{StaticResource GridTextBlock}" Grid.Row="2">LastChildFill</TextBlock>
+        <TextBlock Style="{StaticResource GridTextBlock}" Grid.Row="2">LastChildFill = false</TextBlock>
         <Border Grid.Row="3" Style="{StaticResource CanvasBorder}">
             <DockPanel LastChildFill="False">
                 <Button Style="{StaticResource GridButton}" DockPanel.Dock="Top" Height="50">Top</Button>
