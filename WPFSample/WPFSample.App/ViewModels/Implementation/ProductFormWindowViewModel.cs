@@ -181,6 +181,5 @@ namespace WPFSample.App.ViewModels.Implementation
 
         IRegionManager RegionManager { get { return ServiceLocator.Current.GetInstance<IRegionManager>(); } }
         #endregion
-
     }
 }
