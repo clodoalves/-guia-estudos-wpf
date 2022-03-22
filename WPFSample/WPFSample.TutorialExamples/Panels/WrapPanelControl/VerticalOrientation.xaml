@@ -12,7 +12,7 @@
         <Button Style="{StaticResource GridButton}" >Button 2</Button>
         <Button Style="{StaticResource GridButton}">Button 3</Button>
         <Button Style="{StaticResource GridButton}">Button 4</Button>
-        <Button Style="{StaticResource GridButton}" Width="200" Height="50">Button 5</Button>
+        <Button Style="{StaticResource GridButton}" Width="200">Button 5</Button>
         <Button Style="{StaticResource GridButton}">Button 6</Button>
     </WrapPanel>
 </Page>

@@ -18,7 +18,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock>Basic Example</TextBlock>
+        <TextBlock Style="{StaticResource GridTextBlock}">Basic Example</TextBlock>
         <Border Grid.Row="1" Style="{StaticResource CanvasBorder}">
             <Canvas>
                 <Button Content="Button1"/>
@@ -27,7 +27,7 @@
                 <Button Content="Button4"/>
             </Canvas>
         </Border>
-        <TextBlock Grid.Row="2">Z-Index - default</TextBlock>
+        <TextBlock Style="{StaticResource GridTextBlock}" Grid.Row="2">Z-Index - default</TextBlock>
         <Border Grid.Row="3" Style="{StaticResource CanvasBorder}">
             <Canvas>
                 <Ellipse   Fill="MediumSpringGreen" Canvas.Left="25" Canvas.Top="20" Width="150" Height="150"/>
@@ -37,7 +37,7 @@
             </Canvas>
         </Border>
 
-        <TextBlock Grid.Column="1">Setting coordinates</TextBlock>
+        <TextBlock Style="{StaticResource GridTextBlock}" Grid.Column="1">Setting coordinates</TextBlock>
         <Border Grid.Row="1" Grid.Column="1"  Style="{StaticResource CanvasBorder}">
             <Canvas>
                 <Button Canvas.Left="10" Content="Button1"/>
@@ -47,7 +47,7 @@
             </Canvas>
         </Border>
 
-        <TextBlock Grid.Row="2" Grid.Column="1"> Z-Index</TextBlock>
+        <TextBlock Style="{StaticResource GridTextBlock}" Grid.Row="2" Grid.Column="1"> Z-Index</TextBlock>
         <Border Grid.Row="3" Grid.Column="1"  Style="{StaticResource CanvasBorder}">
             <Canvas>
                 <Ellipse   Panel.ZIndex="2"  Fill="MediumSpringGreen" Canvas.Left="25" Canvas.Top="20" Width="150" Height="150"/>
