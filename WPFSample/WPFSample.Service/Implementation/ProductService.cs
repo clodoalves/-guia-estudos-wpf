@@ -14,6 +14,8 @@ namespace WPFSample.Service.Implementation
         private readonly IProductRepository _productRepository;
         private readonly IProductImageRepository _productImageRepository;
 
+        public ProductService(){}
+
         public ProductService(IProductRepository productRepository, IProductImageRepository productImageRepository)
         {
             _productRepository = productRepository;

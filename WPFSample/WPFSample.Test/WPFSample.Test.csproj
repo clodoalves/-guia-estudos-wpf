@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ProductServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -57,7 +58,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\" />
-    <Folder Include="Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WPFSample.Domain\WPFSample.Domain.csproj">
+      <Project>{85041591-cc1f-46db-9218-a441e5ec753a}</Project>
+      <Name>WPFSample.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPFSample.Repository\WPFSample.Repository.csproj">
+      <Project>{89b2f783-e32f-4fa1-ad31-59fcb0341b33}</Project>
+      <Name>WPFSample.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPFSample.Service\WPFSample.Service.csproj">
+      <Project>{7eb253f4-8cb4-4514-8491-a2f896b51435}</Project>
+      <Name>WPFSample.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -35,7 +35,13 @@ namespace WPFSample.App.ViewModels.Implementation
         public string Title
         {
             get { return _title; }
-            set { SetProperty(ref _title, value); }
+            set
+            {
+                if (SetProperty(ref _title, value))
+                {
+                    CanAddProduct();
+                };
+            }
         }
 
         private string _description;
@@ -69,7 +75,12 @@ namespace WPFSample.App.ViewModels.Implementation
         #endregion
 
         #region Delegate Commands 
-        public DelegateCommand AddProduct => _addProduct ?? (_addProduct = new DelegateCommand(ExecuteUpdateOrAddProduct));
+        public DelegateCommand AddProduct => _addProduct ?? (_addProduct = new DelegateCommand(ExecuteUpdateOrAddProduct, CanAddProduct()));
+
+        private Func<bool> CanAddProduct()
+        {
+            return new Func<bool>(() => !string.IsNullOrWhiteSpace(Title));
+        }
 
         private DelegateCommand _addProduct;
 
