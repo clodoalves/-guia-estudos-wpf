@@ -5,19 +5,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F06BF298-FF75-4724-B5D3-5F0F0B0B1B77}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{C01FC44D-594F-4764-83DF-19DEFB9F027E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WPFSample.Test</RootNamespace>
     <AssemblyName>WPFSample.Test</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -27,7 +26,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,24 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ProductServiceTest.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repository\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WPFSample.Domain\WPFSample.Domain.csproj">
       <Project>{85041591-cc1f-46db-9218-a441e5ec753a}</Project>
       <Name>WPFSample.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WPFSample.Repository\WPFSample.Repository.csproj">
-      <Project>{89b2f783-e32f-4fa1-ad31-59fcb0341b33}</Project>
-      <Name>WPFSample.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\WPFSample.Service\WPFSample.Service.csproj">
       <Project>{7eb253f4-8cb4-4514-8491-a2f896b51435}</Project>

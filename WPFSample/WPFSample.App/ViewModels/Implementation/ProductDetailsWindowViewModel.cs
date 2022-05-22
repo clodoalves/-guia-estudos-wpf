@@ -1,12 +1,6 @@
 ﻿using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WPFSample.App.ViewModels.Contract;
 using WPFSample.Domain;
 using WPFSample.Service.Contract;
@@ -72,13 +66,13 @@ namespace WPFSample.App.ViewModels.Implementation
         {
         }
 
-        public async void OnNavigatedTo(NavigationContext navigationContext)
+        public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            if (navigationContext.Parameters.Any()) 
+            if (navigationContext.Parameters.Any())
             {
                 int id = int.Parse(navigationContext.Parameters.First().Value.ToString());
 
-                var product = await _productService.GetProductById(id);
+                var product = _productService.GetProductById(id);
 
                 BindToViewModel(product);
             }
@@ -86,12 +80,12 @@ namespace WPFSample.App.ViewModels.Implementation
 
         #endregion
 
-        private async void BindToViewModel(Product product)
+        private void BindToViewModel(Product product)
         {
             Title = product.Title;
             Description = product.Description;
             Price = product.Price;
-            Image = await _productService.GetPathFirstImage(product.Id);
+            Image = _productService.GetPathFirstImage(product.Id);
             Rating = 3;
         }
     }

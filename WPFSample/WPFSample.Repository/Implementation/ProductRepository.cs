@@ -10,47 +10,47 @@ namespace WPFSample.Repository.Implementation
 {
     public class ProductRepository : IProductRepository
     {
-        public async Task AddProductAsync(Product product)
+        public void AddProduct(Product product)
         {
             using (var db = new WPFSampleDb())
             {
-                await db.Products.AddAsync(product);
-                await db.SaveChangesAsync();
+                db.Products.Add(product);
+                db.SaveChanges();
             }
         }
 
-        public async Task DeleteProductAsync(Product product)
+        public void DeleteProduct(Product product)
         {
             using (var db = new WPFSampleDb()) 
             {
                 db.Products.Remove(product);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
 
-        public async Task<IList<Product>> GetAllProducts()
+        public IList<Product> GetAllProducts()
         {
             using (var db = new WPFSampleDb()) 
             {
-                return await db.Products.ToListAsync();
+                return db.Products.ToList();
             }
         }
 
-        public async Task<Product> GetProductById(int id)
+        public Product GetProductById(int id)
         {
-            using (var db = new WPFSampleDb()) 
+            using (var db = new WPFSampleDb())
             {
-                return await db.Products.Where(x => x.Id == id).FirstOrDefaultAsync();
+                return db.Products.Where(x => x.Id == id).FirstOrDefault();
             }
         }
 
-        public async Task UpdateProductAsync(Product product)
+        public void UpdateProduct(Product product)
         {
             using (var db = new WPFSampleDb()) 
             {
                 db.Products.Update(product);
 
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             } 
         }
     }

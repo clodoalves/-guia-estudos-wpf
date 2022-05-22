@@ -12,11 +12,11 @@ namespace WPFSample.Repository.Implementation
 {
     public class ProductImageRepository : IProductImageRepository
     {
-        public async Task<ProductImage> GetFirstImage(int idProduct)
+        public ProductImage GetFirstImage(int idProduct)
         {
             using (var db = new WPFSampleDb())
             {
-                return await db.ProductImages.Where(p => p.ProductId == idProduct).FirstOrDefaultAsync();
+                return db.ProductImages.Where(p => p.ProductId == idProduct).FirstOrDefault();
             }
         }
     }

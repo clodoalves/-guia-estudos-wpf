@@ -1,13 +1,11 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
+using System.IO;
 using WPFSample.Domain;
-using WPFSample.Repository.Contract;
-using WPFSample.Repository.Implementation;
 using WPFSample.Service.Contract;
 using WPFSample.Service.Implementation;
 
@@ -17,27 +15,30 @@ namespace WPFSample.Test.Service
     public class ProductServiceTest
     {
         private Product _product;
-        IList<FileStream> _filesWindow;
-       private IProductService _productService;
+        IList<FileStream> _files;
+        private IProductService _productService;
 
-       [SetUp]
-        public void ConfigureDependecies() 
+        [SetUp]
+        public void ConfigureDependecies()
         {
             _product = new Product();
-            _filesWindow = new List<FileStream>();
+            _files = new List<FileStream>();
             _productService = new ProductService();
         }
 
+        [Test]
         public void AddProductWithoutTitleTest()
         {
+
             _product.Title = string.Empty;
             _product.Price = 100;
             _product.Quantity = 1;
             _product.Id = 1;
-            _productService.AddProductAsync(_product, _filesWindow);
+            _productService.AddProduct(_product, _files);
         }
 
-        public void ClearConfiguration() 
+        [TearDown]
+        public void ClearConfiguration()
         {
             _product = null;
         }

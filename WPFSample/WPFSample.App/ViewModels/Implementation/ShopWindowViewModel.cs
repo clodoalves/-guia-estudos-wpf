@@ -32,11 +32,11 @@ namespace WPFSample.App.ViewModels.Implementation
 
         #region Navegation 
 
-        public async void OnNavigatedTo(NavigationContext navigationContext)
+        public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            IList<Product> products = await _productService.GetAllProducts();
+            IList<Product> products = _productService.GetAllProducts();
 
-            ItemsShop =  BindToShopItemViewModel(products);
+            ItemsShop = BindToShopItemViewModel(products);
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
@@ -60,7 +60,7 @@ namespace WPFSample.App.ViewModels.Implementation
                 Id = p.Id,
                 Title = p.Title,
                 Price = p.Price,
-                PathImage = _productService.GetPathFirstImage(p.Id).Result
+                PathImage = _productService.GetPathFirstImage(p.Id)
             }).ToList();
 
             return new ObservableCollection<ShopItemViewModel>(shopItems);

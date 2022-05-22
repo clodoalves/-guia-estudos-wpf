@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFSample.App", "WPFSample.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFSample.TutorialExamples", "WPFSample.TutorialExamples\WPFSample.TutorialExamples.csproj", "{B01AF854-7A60-40AC-8FFE-A3BA199D577B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFSample.Test", "WPFSample.Test\WPFSample.Test.csproj", "{F06BF298-FF75-4724-B5D3-5F0F0B0B1B77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFSample.Test", "WPFSample.Test\WPFSample.Test.csproj", "{C01FC44D-594F-4764-83DF-19DEFB9F027E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{B01AF854-7A60-40AC-8FFE-A3BA199D577B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B01AF854-7A60-40AC-8FFE-A3BA199D577B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B01AF854-7A60-40AC-8FFE-A3BA199D577B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F06BF298-FF75-4724-B5D3-5F0F0B0B1B77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F06BF298-FF75-4724-B5D3-5F0F0B0B1B77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F06BF298-FF75-4724-B5D3-5F0F0B0B1B77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F06BF298-FF75-4724-B5D3-5F0F0B0B1B77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C01FC44D-594F-4764-83DF-19DEFB9F027E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C01FC44D-594F-4764-83DF-19DEFB9F027E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C01FC44D-594F-4764-83DF-19DEFB9F027E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C01FC44D-594F-4764-83DF-19DEFB9F027E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

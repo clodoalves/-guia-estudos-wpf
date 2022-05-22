@@ -22,16 +22,16 @@ namespace WPFSample.Service.Implementation
             _productImageRepository = productImageRepository;
         }
 
-        public async Task AddProductAsync(Product product, IList<FileStream> filesWindow)
+        public void AddProduct(Product product, IList<FileStream> filesWindow)
         {
             AddImagesToProduct(product, filesWindow);
 
-            await _productRepository.AddProductAsync(product);
+            _productRepository.AddProduct(product);
 
             SaveImages(product, filesWindow);
         }
 
-        private static void SaveImages(Product product, IList<FileStream> filesWindow)
+        private void SaveImages(Product product, IList<FileStream> filesWindow)
         {
             string rootPath = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -60,42 +60,42 @@ namespace WPFSample.Service.Implementation
             }).ToList();        
         }
 
-        public async Task DeleteProductAsync(int id)
+        public void DeleteProduct(int id)
         {
-            Product product = await _productRepository.GetProductById(id);
+            Product product = _productRepository.GetProductById(id);
 
-            await _productRepository.DeleteProductAsync(product);
+            _productRepository.DeleteProduct(product);
         }
 
-        public async Task<IList<Product>> GetAllProducts()
+        public IList<Product> GetAllProducts()
         {
-            return await _productRepository.GetAllProducts();
+            return _productRepository.GetAllProducts();
         }
 
-        public async Task<Product> GetProductById(int id)
+        public Product GetProductById(int id)
         {
-            return await _productRepository.GetProductById(id);
+            return _productRepository.GetProductById(id);
         }
 
-        public async Task UpdateProductAsync(Product product)
+        public void UpdateProduct(Product product)
         {
-            await _productRepository.UpdateProductAsync(product);
+            _productRepository.UpdateProduct(product);
         }
 
-        public async Task<string> GetPathFirstImage(int idProduct) 
+        public string GetPathFirstImage(int idProduct)
         {
             string filePath = string.Empty;
 
-            var productImage =  await _productImageRepository.GetFirstImage(idProduct);
+            ProductImage productImage = _productImageRepository.GetFirstImage(idProduct);
 
             if (productImage != null)
             {
                 string rootPath = $"{AppDomain.CurrentDomain.BaseDirectory}/{idProduct}";
 
-                if (Directory.Exists(rootPath)) 
+                if (Directory.Exists(rootPath))
                 {
-                    filePath = $"{rootPath}/{productImage.Path}";                    
-                }                
+                    filePath = $"{rootPath}/{productImage.Path}";
+                }
             }
 
             return filePath;

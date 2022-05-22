@@ -9,13 +9,13 @@ namespace WPFSample.Repository.Contract
 {
     public interface IProductRepository
     {
-        Task AddProductAsync(Product product);
+        void AddProduct(Product product);
 
-        Task<IList<Product>> GetAllProducts();
+        IList<Product> GetAllProducts();
 
-        Task<Product> GetProductById(int id);
-        Task UpdateProductAsync(Product product);
+        Product GetProductById(int id);
+        void UpdateProduct(Product product);
 
-        Task DeleteProductAsync(Product product);
+        void DeleteProduct(Product product);
     }
 }

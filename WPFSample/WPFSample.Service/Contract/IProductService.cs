@@ -10,19 +10,19 @@ namespace WPFSample.Service.Contract
 {
     public interface IProductService
     {
-        Task AddProductAsync(Product product, IList<FileStream> filesWindow);
+        void AddProduct(Product product, IList<FileStream> filesWindow);
 
-        Task<IList<Product>> GetAllProducts();
+        IList<Product> GetAllProducts();
 
-        Task<Product> GetProductById(int id);
+        Product GetProductById(int id);
 
-        Task UpdateProductAsync(Product product);
+        void UpdateProduct(Product product);
 
-        Task DeleteProductAsync(int id);
+        void DeleteProduct(int id);
 
         //Task<ProductImage> GetFirstImage(int idProduct);
 
-        Task<string> GetPathFirstImage(int idProduct);
+        string GetPathFirstImage(int idProduct);
         void UpdateQuantityProducts(int quantity);
     }
 }

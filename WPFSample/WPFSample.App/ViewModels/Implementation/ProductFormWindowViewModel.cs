@@ -118,23 +118,23 @@ namespace WPFSample.App.ViewModels.Implementation
             };
         }
 
-        private async void ExecuteUpdateOrAddProduct()
+        private void ExecuteUpdateOrAddProduct()
         {
             if (Id != 0)
             {
-                Product product = await _productService.GetProductById(Id);
+                Product product = _productService.GetProductById(Id);
 
                 product.Title = Title;
                 product.Description = Description;
                 product.Price = Price;
                 product.Quantity = Quantity;
 
-                await _productService.UpdateProductAsync(product);
+                _productService.UpdateProduct(product);
             }
             else
             {
                 Product product = BindToProductObject();
-                await _productService.AddProductAsync(product, Images);
+                _productService.AddProduct(product, Images);
             }
 
             RegionManager.RequestNavigate("MainRegion", "ProductsWindow");
@@ -162,13 +162,13 @@ namespace WPFSample.App.ViewModels.Implementation
 
         #region Navigation
 
-        public async void OnNavigatedTo(NavigationContext navigationContext)
+        public void OnNavigatedTo(NavigationContext navigationContext)
         {
             if (navigationContext.Parameters.Any())
             {
                 int id = int.Parse(navigationContext.Parameters.First().Value.ToString());
 
-                var product = await _productService.GetProductById(id);
+                var product = _productService.GetProductById(id);
 
                 BindToViewModel(product);
             }

@@ -5,6 +5,6 @@ namespace WPFSample.Repository.Contract
 {
     public interface IProductImageRepository
     {
-        Task<ProductImage> GetFirstImage(int idProduct);
+        ProductImage GetFirstImage(int idProduct);
     }
 }

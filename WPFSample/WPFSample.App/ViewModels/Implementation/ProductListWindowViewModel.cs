@@ -50,7 +50,7 @@ namespace WPFSample.App.ViewModels.Implementation
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            var list = _productService.GetAllProducts().Result;
+            var list = _productService.GetAllProducts();
 
             var items = BindToProductListItemViewModel(list);
 

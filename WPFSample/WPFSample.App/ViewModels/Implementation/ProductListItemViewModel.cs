@@ -57,7 +57,7 @@ namespace WPFSample.App.ViewModels.Implementation
 
         private void ExecuteDeleteProduct() 
         {
-            _productService.DeleteProductAsync(Id);
+            _productService.DeleteProduct(Id);
 
             RegionManager.RequestNavigate("MainRegion", "ProductsWindow");
 
