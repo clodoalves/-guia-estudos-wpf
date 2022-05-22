@@ -37,34 +37,6 @@ namespace WPFSample.Service.Implementation
             SaveImages(product, filesWindow);
         }
 
-        private void ValidateLimitCharacters(Product product)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            if (product.Title.Length > 25)
-            {
-                sb.AppendLine($"{nameof(product.Title)} has limit of 25 characteres");
-            }
-
-            if (product.Description.Length > 200)
-            {
-                sb.AppendLine($"{nameof(product.Description)} has limit of 200 characteres");
-            }
-
-            if (product.Price.ToString().Length > 10)
-            {
-                sb.AppendLine($"{nameof(product.Price)} has limit of 10 characteres");
-            }
-
-            if (product.Quantity.ToString().Length > 4)
-            {
-                sb.AppendLine($"{nameof(product.Quantity)} has limit of 4 characteres");
-            }
-
-            if (sb.Length > 0)
-                throw new FieldExceedCaracterLimitException(sb.ToString());
-        }
-
         private void ValidateRequiredFields(Product product)
         {
             StringBuilder sb = new StringBuilder();
@@ -90,22 +62,48 @@ namespace WPFSample.Service.Implementation
             if (sb.Length > 0)
                 throw new RequiredFieldException(sb.ToString());
         }
-
         private void ValidateNumericFields(Product product)
         {
             StringBuilder sb = new StringBuilder();
 
-            if (product.Price <= 0)
+            if (product.Price < 0)
             {
                 sb.AppendLine($"{product.Price} less than zero");
             }
-            if (product.Quantity <= 0)
+            if (product.Quantity < 0)
             {
                 sb.AppendLine($"{product.Quantity} less than zero");
             }
 
             if (sb.Length > 0)
                 throw new NumericFieldLessThanZeroException(sb.ToString());
+        }
+        private void ValidateLimitCharacters(Product product)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if (product.Title.Length > 25)
+            {
+                sb.AppendLine($"{nameof(product.Title)} has limit of 25 characteres");
+            }
+
+            if (product.Description.Length > 80)
+            {
+                sb.AppendLine($"{nameof(product.Description)} has limit of 200 characteres");
+            }
+
+            if (product.Price.ToString().Length > 10)
+            {
+                sb.AppendLine($"{nameof(product.Price)} has limit of 10 characteres");
+            }
+
+            if (product.Quantity.ToString().Length > 4)
+            {
+                sb.AppendLine($"{nameof(product.Quantity)} has limit of 4 characteres");
+            }
+
+            if (sb.Length > 0)
+                throw new FieldExceedCaracterLimitException(sb.ToString());
         }
 
         private void AddImagesToProduct(Product product, IList<FileStream> filesWindow)
