@@ -39,10 +39,10 @@
                              Height="80"/>
 
                     <TextBlock Text="Quantity" Style="{StaticResource textBlockLabelStyle}"/>
-                    <TextBox  Text="{Binding Quantity, Mode=OneWay}" Style="{StaticResource textBoxStyle}"/>
+                    <TextBox  Text="{Binding Quantity}" Style="{StaticResource textBoxStyle}"/>
 
                     <TextBlock Text="Price" Style="{StaticResource textBlockLabelStyle}" />
-                    <TextBox  Text="{Binding Price, Mode=OneWay}" Style="{StaticResource textBoxStyle}"/>
+                    <TextBox  Text="{Binding Price}" Style="{StaticResource textBoxStyle}"/>
 
                     <Button Content="Save" Margin="0,25,0,0"
                             HorizontalAlignment="Stretch" 

@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using WPFSample.App.ViewModels.Contract;
 using WPFSample.Domain;
 using WPFSample.Service.Contract;
-
+using WPFSample.Service.Exceptions;
 
 namespace WPFSample.App.ViewModels.Implementation
 {
@@ -37,10 +37,8 @@ namespace WPFSample.App.ViewModels.Implementation
             get { return _title; }
             set
             {
-                if (SetProperty(ref _title, value))
-                {
-                    CanAddProduct();
-                };
+                SetProperty(ref _title, value);
+
             }
         }
 
@@ -75,7 +73,7 @@ namespace WPFSample.App.ViewModels.Implementation
         #endregion
 
         #region Delegate Commands 
-        public DelegateCommand AddProduct => _addProduct ?? (_addProduct = new DelegateCommand(ExecuteUpdateOrAddProduct, CanAddProduct()));
+        public DelegateCommand AddProduct => _addProduct ?? (_addProduct = new DelegateCommand(ExecuteUpdateOrAddProduct));
 
         private Func<bool> CanAddProduct()
         {
@@ -120,24 +118,39 @@ namespace WPFSample.App.ViewModels.Implementation
 
         private void ExecuteUpdateOrAddProduct()
         {
-            if (Id != 0)
+            try
             {
-                Product product = _productService.GetProductById(Id);
+                if (Id != 0)
+                {
+                    Product product = _productService.GetProductById(Id);
 
-                product.Title = Title;
-                product.Description = Description;
-                product.Price = Price;
-                product.Quantity = Quantity;
+                    product.Title = Title;
+                    product.Description = Description;
+                    product.Price = Price;
+                    product.Quantity = Quantity;
 
-                _productService.UpdateProduct(product);
+                    _productService.UpdateProduct(product);
+                }
+                else
+                {
+                    Product product = BindToProductObject();
+                    _productService.AddProduct(product, Images);
+                }
+
+                RegionManager.RequestNavigate("MainRegion", "ProductsWindow");
             }
-            else
+            catch (BusinessException ex)
             {
-                Product product = BindToProductObject();
-                _productService.AddProduct(product, Images);
-            }
 
-            RegionManager.RequestNavigate("MainRegion", "ProductsWindow");
+            }
+            catch (DatabaseException ex)
+            {
+
+            }
+            catch (Exception ex) 
+            {
+            
+            }
         }
 
         private void ClearViewModel()

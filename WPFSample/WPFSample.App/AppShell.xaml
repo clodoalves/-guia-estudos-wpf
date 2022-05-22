@@ -16,7 +16,6 @@
 
         <StackPanel Margin="20,0,20,0">
             <StackPanel.Resources>
-
                 <Style TargetType="TextBlock" x:Key="TitleApp">
                     <Setter Property="Background" Value="White"/>
                     <Setter Property="Foreground" Value="{StaticResource fundoBorda}"/>
@@ -44,6 +43,8 @@
         </StackPanel>
 
 
+        
+        
         <ContentControl prism:RegionManager.RegionName="MainRegion"  Grid.Column="1"/>
 
     </Grid>

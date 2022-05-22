@@ -43,6 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contract\IProductService.cs" />
+    <Compile Include="Exceptions\BusinessException.cs" />
+    <Compile Include="Exceptions\DatabaseException.cs" />
+    <Compile Include="Exceptions\Product\FieldExceedCharacterLimitException.cs" />
+    <Compile Include="Exceptions\Product\NumericFieldLessThanZeroException.cs" />
+    <Compile Include="Exceptions\Product\RequiredFieldException.cs" />
     <Compile Include="Implementation\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
