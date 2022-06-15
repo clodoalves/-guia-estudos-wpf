@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WPFSample.Repository.Context;
 using WPFSample.Repository.Contract;
 
 namespace WPFSample.Repository.Implementation
 {
-    public class RepositoryBase<T> where T : class, IRepositoryBase<T>
+    public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        protected WPFSampleDbContext dbContext;
+        protected WPFSampleDbContext dbContext = new WPFSampleDbContext();
         public void Add(T register)
         {
             dbContext.Add(register);

@@ -32,7 +32,7 @@ namespace WPFSample.Service.Implementation
 
             AddImagesToProduct(product, filesWindow);
 
-            _productRepository.AddProduct(product);
+            _productRepository.Add(product);
 
             SaveImages(product, filesWindow);
         }
@@ -137,24 +137,24 @@ namespace WPFSample.Service.Implementation
 
         public void DeleteProduct(int id)
         {
-            Product product = _productRepository.GetProductById(id);
+            Product product = _productRepository.GetById(id);
 
-            _productRepository.DeleteProduct(product);
+            _productRepository.Delete(product);
         }
 
         public IList<Product> GetAllProducts()
         {
-            return _productRepository.GetAllProducts();
+            return _productRepository.GetAll().ToList();
         }
 
         public Product GetProductById(int id)
         {
-            return _productRepository.GetProductById(id);
+            return _productRepository.GetById(id);
         }
 
         public void UpdateProduct(Product product)
         {
-            _productRepository.UpdateProduct(product);
+            _productRepository.Update(product);
         }
 
         public string GetPathFirstImage(int idProduct)
