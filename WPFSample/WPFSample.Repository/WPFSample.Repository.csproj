@@ -150,11 +150,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\WPFSampleDb.cs" />
+    <Compile Include="Context\FakeWPFSampleDbContext.cs" />
+    <Compile Include="Context\IDbContext.cs" />
+    <Compile Include="Context\WPFSampleDbContext.cs" />
     <Compile Include="Contract\IProductRepository.cs" />
     <Compile Include="Contract\IProductImageRepository.cs" />
+    <Compile Include="Contract\IRepositoryBase.cs" />
     <Compile Include="Implementation\ProductImageRepository.cs" />
     <Compile Include="Implementation\ProductRepository.cs" />
+    <Compile Include="Implementation\RepositoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

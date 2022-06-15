@@ -12,7 +12,7 @@ namespace WPFSample.Repository.Implementation
     {
         public void AddProduct(Product product)
         {
-            using (var db = new WPFSampleDb())
+            using (var db = new WPFSampleDbContext())
             {
                 db.Products.Add(product);
                 db.SaveChanges();
@@ -21,7 +21,7 @@ namespace WPFSample.Repository.Implementation
 
         public void DeleteProduct(Product product)
         {
-            using (var db = new WPFSampleDb()) 
+            using (var db = new WPFSampleDbContext()) 
             {
                 db.Products.Remove(product);
                 db.SaveChanges();
@@ -30,7 +30,7 @@ namespace WPFSample.Repository.Implementation
 
         public IList<Product> GetAllProducts()
         {
-            using (var db = new WPFSampleDb()) 
+            using (var db = new WPFSampleDbContext()) 
             {
                 return db.Products.ToList();
             }
@@ -38,7 +38,7 @@ namespace WPFSample.Repository.Implementation
 
         public Product GetProductById(int id)
         {
-            using (var db = new WPFSampleDb())
+            using (var db = new WPFSampleDbContext())
             {
                 return db.Products.Where(x => x.Id == id).FirstOrDefault();
             }
@@ -46,7 +46,7 @@ namespace WPFSample.Repository.Implementation
 
         public void UpdateProduct(Product product)
         {
-            using (var db = new WPFSampleDb()) 
+            using (var db = new WPFSampleDbContext()) 
             {
                 db.Products.Update(product);
 

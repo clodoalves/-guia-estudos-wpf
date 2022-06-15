@@ -8,7 +8,7 @@ using WPFSample.Domain;
 
 namespace WPFSample.Repository.Context
 {
-    class FakeWPFSampleDbContext : IWPFSampleDbContext
+    public class FakeWPFSampleDbContext : IDbContext
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }

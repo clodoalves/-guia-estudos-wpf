@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,46 +8,35 @@ using WPFSample.Repository.Contract;
 
 namespace WPFSample.Repository.Implementation
 {
-    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
+    public class RepositoryBase<T> where T : class, IRepositoryBase<T>
     {
-        public WPFSampleDbContext Db => new WPFSampleDbContext();
-
-        public TEntity Add(TEntity obj)
+        protected WPFSampleDbContext dbContext;
+        public void Add(T register)
         {
-            Db.Set<TEntity>().Add(obj);
-            Db.SaveChanges();
-
-            return obj;
+            dbContext.Add(register);
+            dbContext.SaveChanges();
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public void Delete(T register)
         {
-            return Db.Set<TEntity>().ToList();
+            dbContext.Remove(register);
+            dbContext.SaveChanges();
         }
 
-        public Task<IEnumerable<TEntity>> GetAllAsync()
+        public IEnumerable<T> GetAll()
         {
-            return Task<IEnumerable<TEntity>>.Factory.StartNew(() =>
-            {
-                return Db.Set<TEntity>().AsParallel().ToList();
-            });
+            return dbContext.Set<T>().ToList();
         }
 
-        public TEntity GetById(int id)
+        public T GetById(int id)
         {
-            return Db.Set<TEntity>().Find(id);
+            return dbContext.Set<T>().Find(id);
         }
 
-        public void Remove(TEntity obj)
+        public void Update(T register)
         {
-            Db.Set<TEntity>().Remove(obj);
-            Db.SaveChanges();
-        }
-
-        public void Update(TEntity obj)
-        {
-            Db.Entry(obj).State = EntityState.Modified;
-            Db.SaveChanges();
+            dbContext.Update(register);
+            dbContext.SaveChanges();
         }
     }
 }

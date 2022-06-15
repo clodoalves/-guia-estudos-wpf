@@ -14,7 +14,7 @@ namespace WPFSample.Repository.Implementation
     {
         public ProductImage GetFirstImage(int idProduct)
         {
-            using (var db = new WPFSampleDb())
+            using (var db = new WPFSampleDbContext())
             {
                 return db.ProductImages.Where(p => p.ProductId == idProduct).FirstOrDefault();
             }

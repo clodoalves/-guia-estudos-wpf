@@ -33,7 +33,7 @@ namespace WPFSample.App
             base.OnStartup(e);
 
             //criacao de banco de dados
-            using (var db = new WPFSampleDb())
+            using (var db = new WPFSampleDbContext())
             {
                 await db.Database.EnsureCreatedAsync();
             }

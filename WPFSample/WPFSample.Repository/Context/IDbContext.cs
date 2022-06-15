@@ -8,10 +8,10 @@ using WPFSample.Domain;
 
 namespace WPFSample.Repository.Context
 {
-    public interface IWPFSampleDbContext
+    public interface IDbContext
     {
-        DbSet<Product> Products { get;}
-        DbSet<ProductImage> ProductImages { get;}
+        DbSet<Product> Products { get; }
+        DbSet<ProductImage> ProductImages { get; }
 
         int SaveChanges();
     }
