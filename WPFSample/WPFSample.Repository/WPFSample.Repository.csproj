@@ -156,9 +156,13 @@
     <Compile Include="Contract\IProductRepository.cs" />
     <Compile Include="Contract\IProductImageRepository.cs" />
     <Compile Include="Contract\IRepositoryBase.cs" />
+    <Compile Include="Implementation\MappingBase.cs" />
     <Compile Include="Implementation\ProductImageRepository.cs" />
     <Compile Include="Implementation\ProductRepository.cs" />
     <Compile Include="Implementation\RepositoryBase.cs" />
+    <Compile Include="Mapping\ProductImageMap.cs" />
+    <Compile Include="Mapping\ProductMap.cs" />
+    <Compile Include="MaxLengthConstValues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

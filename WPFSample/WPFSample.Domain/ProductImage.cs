@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace WPFSample.Domain
 {
-    public class ProductImage
+    public class ProductImage : DomainBase
     {
-        public int Id { get; set; }
         public string Path { get; set; }
-        public virtual int ProductId { get; set; }
+        public int ProductId { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

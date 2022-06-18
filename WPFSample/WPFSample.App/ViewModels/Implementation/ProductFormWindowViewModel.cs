@@ -4,14 +4,9 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Navigation;
 using WPFSample.App.ViewModels.Contract;
 using WPFSample.Domain;
 using WPFSample.Service.Contract;
@@ -105,10 +100,11 @@ namespace WPFSample.App.ViewModels.Implementation
             }
         }
 
-        private Product BindToProductObject()
+        private Product BindToProduct()
         {
             return new Product()
             {
+                Id = Id,
                 Title = Title,
                 Description = Description,
                 Price = Price,
@@ -120,22 +116,8 @@ namespace WPFSample.App.ViewModels.Implementation
         {
             try
             {
-                if (Id != 0)
-                {
-                    Product product = _productService.GetProductById(Id);
-
-                    product.Title = Title;
-                    product.Description = Description;
-                    product.Price = Price;
-                    product.Quantity = Quantity;
-
-                    _productService.UpdateProduct(product);
-                }
-                else
-                {
-                    Product product = BindToProductObject();
-                    _productService.AddProduct(product, Images);
-                }
+                Product product = BindToProduct();
+                _productService.AddOrUpdateProduct(product, Images);
 
                 RegionManager.RequestNavigate("MainRegion", "ProductsWindow");
             }
@@ -147,9 +129,9 @@ namespace WPFSample.App.ViewModels.Implementation
             {
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-            
+
             }
         }
 

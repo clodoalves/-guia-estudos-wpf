@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 using WPFSample.Domain;
 using WPFSample.Repository.Contract;
 using WPFSample.Service.Contract;
 using System.Linq;
 using WPFSample.Service.Exceptions.Product;
 using System.Text;
+using WPFSample.Repository;
 
 namespace WPFSample.Service.Implementation
 {
@@ -24,7 +24,7 @@ namespace WPFSample.Service.Implementation
             _productImageRepository = productImageRepository;
         }
 
-        public void AddProduct(Product product, IList<FileStream> filesWindow)
+        public void AddOrUpdateProduct(Product product, IList<FileStream> filesWindow)
         {
             ValidateRequiredFields(product);
             ValidateNumericFields(product);
@@ -32,7 +32,21 @@ namespace WPFSample.Service.Implementation
 
             AddImagesToProduct(product, filesWindow);
 
-            _productRepository.Add(product);
+            if (product.Id != 0)
+            {
+                Product databaseRegister = GetProductById(product.Id);
+
+                databaseRegister.Title = product.Title;
+                databaseRegister.Description = product.Description;
+                databaseRegister.Price = product.Price;
+                databaseRegister.Quantity = product.Quantity;
+
+                _productRepository.Update(databaseRegister);
+            }
+            else
+            {
+                _productRepository.Add(product);
+            }
 
             SaveImages(product, filesWindow);
         }
@@ -45,18 +59,10 @@ namespace WPFSample.Service.Implementation
             {
                 sb.AppendLine($"{nameof(product.Title)} is required!");
             }
-            if (string.IsNullOrWhiteSpace(product.Description))
-            {
-                sb.AppendLine($"{nameof(product.Description)} is required!");
-            }
+
             if (product.Price == 0)
             {
                 sb.AppendLine($"{nameof(product.Price)} is required!");
-            }
-
-            if (product.Quantity == 0)
-            {
-                sb.AppendLine($"{nameof(product.Quantity)} is required!");
             }
 
             if (sb.Length > 0)
@@ -82,24 +88,24 @@ namespace WPFSample.Service.Implementation
         {
             StringBuilder sb = new StringBuilder();
 
-            if (product.Title.Length > 25)
+            if (product.Title.Length > MaxLengthConstValues.MAX_LENGTH_PRODUCT_TITLE)
             {
-                sb.AppendLine($"{nameof(product.Title)} has limit of 25 characteres");
+                sb.AppendLine($"{nameof(product.Title)} has limit of {MaxLengthConstValues.MAX_LENGTH_PRODUCT_TITLE} characteres");
             }
 
-            if (product.Description.Length > 80)
+            if (product.Description.Length > MaxLengthConstValues.MAX_LENGTH_PRODUCT_DESCRIPTION)
             {
-                sb.AppendLine($"{nameof(product.Description)} has limit of 200 characteres");
+                sb.AppendLine($"{nameof(product.Description)} has limit of {MaxLengthConstValues.MAX_LENGTH_PRODUCT_DESCRIPTION} characteres");
             }
 
-            if (product.Price.ToString().Length > 10)
+            if (product.Price.ToString().Length > MaxLengthConstValues.MAX_LENGTH_PRODUCT_PRICE)
             {
-                sb.AppendLine($"{nameof(product.Price)} has limit of 10 characteres");
+                sb.AppendLine($"{nameof(product.Price)} has limit of {MaxLengthConstValues.MAX_LENGTH_PRODUCT_PRICE} characteres");
             }
 
-            if (product.Quantity.ToString().Length > 4)
+            if (product.Quantity.ToString().Length > MaxLengthConstValues.MAX_LENGTH_PRODUCT_QUANTITY)
             {
-                sb.AppendLine($"{nameof(product.Quantity)} has limit of 4 characteres");
+                sb.AppendLine($"{nameof(product.Quantity)} has limit of {MaxLengthConstValues.MAX_LENGTH_PRODUCT_QUANTITY} characteres");
             }
 
             if (sb.Length > 0)
@@ -150,11 +156,6 @@ namespace WPFSample.Service.Implementation
         public Product GetProductById(int id)
         {
             return _productRepository.GetById(id);
-        }
-
-        public void UpdateProduct(Product product)
-        {
-            _productRepository.Update(product);
         }
 
         public string GetPathFirstImage(int idProduct)

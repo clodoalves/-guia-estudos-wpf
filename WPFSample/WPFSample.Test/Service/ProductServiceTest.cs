@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 using System.IO;
 using WPFSample.Domain;
@@ -35,29 +31,7 @@ namespace WPFSample.Test.Service
             _product.Price = 100;
             _product.Quantity = 1;
             
-            Assert.Throws(typeof(RequiredFieldException), () => _productService.AddProduct(_product, _files));
-        }
-
-        [Test]
-        public void AddProductWithoutDescriptionTest() 
-        {
-            _product.Title = "New laptop";
-            _product.Description = string.Empty;
-            _product.Price = 100;
-            _product.Quantity = 1;
-
-            Assert.Throws(typeof(RequiredFieldException), () => _productService.AddProduct(_product, _files));
-        }
-
-        [Test]
-        public void AddProductWithoutQuantity() 
-        {
-            _product.Title = "New laptop";
-            _product.Description = "New product";
-            _product.Price = 100;
-            _product.Quantity = 0;
-
-            Assert.Throws(typeof(RequiredFieldException), () => _productService.AddProduct(_product, _files));
+            Assert.Throws(typeof(RequiredFieldException), () => _productService.AddOrUpdateProduct(_product, _files));
         }
 
         [Test]
@@ -68,7 +42,7 @@ namespace WPFSample.Test.Service
             _product.Price = 0;
             _product.Quantity = 10;
 
-            Assert.Throws(typeof(RequiredFieldException), () => _productService.AddProduct(_product, _files));
+            Assert.Throws(typeof(RequiredFieldException), () => _productService.AddOrUpdateProduct(_product, _files));
         }
 
         [Test]
@@ -79,7 +53,7 @@ namespace WPFSample.Test.Service
             _product.Price = -2;
             _product.Quantity = 10;
 
-            Assert.Throws(typeof(NumericFieldLessThanZeroException), () => _productService.AddProduct(_product, _files));
+            Assert.Throws(typeof(NumericFieldLessThanZeroException), () => _productService.AddOrUpdateProduct(_product, _files));
         }
 
         [Test]
@@ -90,7 +64,7 @@ namespace WPFSample.Test.Service
             _product.Price = 3;
             _product.Quantity = -5;
 
-            Assert.Throws(typeof(NumericFieldLessThanZeroException), () => _productService.AddProduct(_product, _files));
+            Assert.Throws(typeof(NumericFieldLessThanZeroException), () => _productService.AddOrUpdateProduct(_product, _files));
         }
 
         [Test]
@@ -101,7 +75,7 @@ namespace WPFSample.Test.Service
             _product.Price = 3;
             _product.Quantity = 1;
 
-            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddProduct(_product, _files));
+            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_product, _files));
         }
 
         [Test]
@@ -112,7 +86,7 @@ namespace WPFSample.Test.Service
             _product.Price = 3;
             _product.Quantity = 1;
 
-            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddProduct(_product, _files));
+            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_product, _files));
         }
 
         [Test]
@@ -123,7 +97,7 @@ namespace WPFSample.Test.Service
             _product.Price = 100000000000;
             _product.Quantity = 1;
 
-            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddProduct(_product, _files));
+            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_product, _files));
         }
 
         [Test]
@@ -134,7 +108,7 @@ namespace WPFSample.Test.Service
             _product.Price = 3;
             _product.Quantity = 100000000;
 
-            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddProduct(_product, _files));
+            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_product, _files));
         }
 
         [TearDown]

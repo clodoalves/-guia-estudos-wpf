@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 using WPFSample.Domain;
+using WPFSample.Repository.Mapping;
 
 namespace WPFSample.Repository.Context
 {
@@ -12,6 +12,12 @@ namespace WPFSample.Repository.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(@"Data Source=D:\data.db");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ProductMap());
+            modelBuilder.ApplyConfiguration(new ProductImageMap());
         }
     }
 }
