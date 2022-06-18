@@ -10,7 +10,7 @@ using WPFSample.Repository.Contract;
 
 namespace WPFSample.Repository.Implementation
 {
-    public class ProductImageRepository : IProductImageRepository
+    public class ProductImageRepository: RepositoryBase<ProductImage>, IProductImageRepository
     {
         public ProductImage GetFirstImage(int idProduct)
         {
