@@ -6,7 +6,7 @@ using WPFSample.Repository.Contract;
 
 namespace WPFSample.Repository.Implementation
 {
-    public class RepositoryBase<T> : IRepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         protected WPFSampleDbContext dbContext = new WPFSampleDbContext();
         public void Add(T register)
@@ -23,7 +23,11 @@ namespace WPFSample.Repository.Implementation
 
         public IEnumerable<T> GetAll()
         {
-            return dbContext.Set<T>().ToList();
+            //TODO: To find a way to refresh the global dbContext correctly
+            using (var dbContext = new WPFSampleDbContext())
+            {
+                return dbContext.Set<T>().ToList();
+            }
         }
 
         public T GetById(int id)

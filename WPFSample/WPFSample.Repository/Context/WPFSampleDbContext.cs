@@ -10,7 +10,7 @@ namespace WPFSample.Repository.Context
         public DbSet<ProductImage> ProductImages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {            
+        {
             optionsBuilder.UseSqlite(@"Data Source=D:\data.db");
         }
     }
