@@ -5,14 +5,14 @@ using WPFSample.Repository.Contract;
 
 namespace WPFSample.Repository.Implementation
 {
-    public class ProductImageRepository: RepositoryBase<ProductImage>, IProductImageRepository
+    public class ProductImageRepository : RepositoryBase<ProductImage>, IProductImageRepository
     {
         public ProductImage GetFirstImage(int idProduct)
         {
-            using (var db = new WPFSampleDbContext())
-            {
-                return db.ProductImages.Where(p => p.ProductId == idProduct).FirstOrDefault();
-            }
+            //using (var db = new WPFSampleDbContext())
+            //{
+            return dbContext.ProductImages.Where(p => p.ProductId == idProduct).FirstOrDefault();
+            //}
         }
     }
 }

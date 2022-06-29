@@ -7,10 +7,10 @@ namespace WPFSample.Repository.Implementation
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        protected WPFSampleDbContext dbContext = new WPFSampleDbContext();
+        protected WPFSampleDbContext dbContext = WPFSampleDbContext.GetInstance();
         public void Add(T register)
         {
-            dbContext.Add(register);
+            dbContext.Add(register);                     
             dbContext.SaveChanges();
         }
 
@@ -22,11 +22,11 @@ namespace WPFSample.Repository.Implementation
 
         public IEnumerable<T> GetAll()
         {
-            //TODO: To find a way to refresh the global dbContext correctly
-            using (var dbContext = new WPFSampleDbContext())
-            {
+            //TODO: To find a way to refresh the class dbContext correctly
+            //using (var dbContext = new WPFSampleDbContext())
+            //{
                 return dbContext.Set<T>().ToList();
-            }
+            //}
         }
 
         public T GetById(int id)

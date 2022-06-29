@@ -32,11 +32,7 @@ namespace WPFSample.App
         {
             base.OnStartup(e);
 
-            //criacao de banco de dados
-            using (var db = new WPFSampleDbContext())
-            {
-                await db.Database.EnsureCreatedAsync();
-            }
+            await WPFSampleDbContext.GetInstance().Database.EnsureCreatedAsync();
 
             new Bootstrapper().Run();
         }
