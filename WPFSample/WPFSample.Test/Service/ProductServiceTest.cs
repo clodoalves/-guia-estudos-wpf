@@ -5,6 +5,8 @@ using WPFSample.Domain;
 using WPFSample.Service.Contract;
 using WPFSample.Service.Implementation;
 using WPFSample.Service.Exceptions.Product;
+using Moq;
+using WPFSample.Repository.Contract;
 
 namespace WPFSample.Test.Service
 {
@@ -14,13 +16,18 @@ namespace WPFSample.Test.Service
         private Product _product;
         IList<FileStream> _files;
         private IProductService _productService;
+        private Mock<IProductRepository> _mockProductRepository;
+        private Mock<IProductImageRepository> _mockProductImageRepository;
 
         [SetUp]
         public void ConfigureDependecies()
         {
+            _mockProductRepository = new Mock<IProductRepository>();
+            _mockProductImageRepository = new Mock<IProductImageRepository>();
+
             _product = new Product();
             _files = new List<FileStream>();
-            _productService = new ProductService();
+            _productService = new ProductService(_mockProductRepository.Object, _mockProductImageRepository.Object);
         }
 
         [Test]
@@ -30,12 +37,12 @@ namespace WPFSample.Test.Service
             _product.Description = "New product";
             _product.Price = 100;
             _product.Quantity = 1;
-            
+
             Assert.Throws(typeof(RequiredFieldException), () => _productService.AddOrUpdateProduct(_product, _files));
         }
 
         [Test]
-        public void AddProductWithoutPrice() 
+        public void AddProductWithoutPrice()
         {
             _product.Title = "New laptop";
             _product.Description = "New product";
@@ -46,7 +53,7 @@ namespace WPFSample.Test.Service
         }
 
         [Test]
-        public void AddProductWithPriceLessThanZero() 
+        public void AddProductWithPriceLessThanZero()
         {
             _product.Title = "New laptop";
             _product.Description = "New product";
@@ -57,7 +64,7 @@ namespace WPFSample.Test.Service
         }
 
         [Test]
-        public void AddProductWithQuantityLessThanZero() 
+        public void AddProductWithQuantityLessThanZero()
         {
             _product.Title = "New laptop";
             _product.Description = "New product";
@@ -68,7 +75,7 @@ namespace WPFSample.Test.Service
         }
 
         [Test]
-        public void AddProductWithTitleThatExceedsLimitCharacters() 
+        public void AddProductWithTitleThatExceedsLimitCharacters()
         {
             _product.Title = "Product with loooooooooooooooooooooooooooooooooooooooooooooooooog title";
             _product.Description = "New product";
@@ -80,7 +87,7 @@ namespace WPFSample.Test.Service
 
         [Test]
         public void AddProductWithDescriptionThatExceedsLimitCharacters()
-        { 
+        {
             _product.Title = "New laptop";
             _product.Description = "Product with loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong description";
             _product.Price = 3;
@@ -101,7 +108,7 @@ namespace WPFSample.Test.Service
         }
 
         [Test]
-        public void AddProductWithQuantityThatExceedsLimitNumbers() 
+        public void AddProductWithQuantityThatExceedsLimitNumbers()
         {
             _product.Title = "New laptop";
             _product.Description = "New product";
@@ -109,6 +116,50 @@ namespace WPFSample.Test.Service
             _product.Quantity = 100000000;
 
             Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_product, _files));
+        }
+
+        [Test]
+        public void SaveNewProductWithoutImages()
+        {
+            Product newProduct = new Product()
+            {
+                Id = 0,
+                Title = "Laptop",
+                Description = "New Brand Laptop",
+                Price = 2000,
+                Quantity = 2
+            };
+
+            IList<FileStream> productImages = new List<FileStream>();
+            _productService.AddOrUpdateProduct(newProduct, productImages);
+
+            _mockProductRepository.Verify();
+        
+        }
+
+        [Test]
+        public void UpdateTitleProduct()
+        {
+            int productId = 110;
+            string newTitle = "Test2";
+            Product updatedProduct = new Product
+            {
+                Id = productId,
+                Title = newTitle,
+                Description = string.Empty,
+                Price = 100,
+                Quantity = 0,
+                ProductImages = new List<ProductImage>()
+            };
+
+            _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>()))
+                .Returns(new Product { Id = productId, Title = "Test", Price = 100 });
+
+            _productService.AddOrUpdateProduct(updatedProduct, _files);
+
+            Product searchedProduct = _productService.GetProductById(productId);
+
+            Assert.IsTrue(searchedProduct.Title == newTitle);
         }
 
         [TearDown]
