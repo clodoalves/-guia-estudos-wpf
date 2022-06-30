@@ -7,6 +7,7 @@ using WPFSample.Service.Implementation;
 using WPFSample.Service.Exceptions.Product;
 using Moq;
 using WPFSample.Repository.Contract;
+using System.Linq;
 
 namespace WPFSample.Test.Service
 {
@@ -121,45 +122,91 @@ namespace WPFSample.Test.Service
         [Test]
         public void SaveNewProductWithoutImages()
         {
+            int newProductId = 1;
+
+            Product mockedProduct = new Product()
+            {
+                Id = newProductId,
+                Title = "Laptop",
+                Description = "Laptop",
+                Price = 2000,
+                Quantity = 2
+            };
+
+            _mockProductRepository.Setup(s => s.Add(It.IsAny<Product>())).Callback((Product p) => p = mockedProduct);
+            _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>())).Returns(mockedProduct);
+
             Product newProduct = new Product()
             {
-                Id = 0,
                 Title = "Laptop",
-                Description = "New Brand Laptop",
+                Description = "Laptop",
                 Price = 2000,
                 Quantity = 2
             };
 
             IList<FileStream> productImages = new List<FileStream>();
+
             _productService.AddOrUpdateProduct(newProduct, productImages);
 
-            _mockProductRepository.Verify();
-        
+            Product savedProduct = _productService.GetProductById(newProductId);
+
+            Assert.AreEqual(savedProduct.Id, newProductId);
         }
 
         [Test]
         public void UpdateTitleProduct()
         {
             int productId = 110;
-            string newTitle = "Test2";
-            Product updatedProduct = new Product
+
+            Product mockedProduct = new Product()
             {
                 Id = productId,
-                Title = newTitle,
-                Description = string.Empty,
-                Price = 100,
-                Quantity = 0,
-                ProductImages = new List<ProductImage>()
+                Title = "Old laptop",
+                Description = "Good laptop",
+                Price = 3000,
+                Quantity = 1
             };
 
             _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>()))
-                .Returns(new Product { Id = productId, Title = "Test", Price = 100 });
+                .Returns(mockedProduct);
+
+            string newTitle = "New laptop";
+
+            Product updatedProduct = mockedProduct;
+            updatedProduct.Title = newTitle;
 
             _productService.AddOrUpdateProduct(updatedProduct, _files);
 
-            Product searchedProduct = _productService.GetProductById(productId);
+            Product databaseProduct = _productService.GetProductById(productId);
 
-            Assert.IsTrue(searchedProduct.Title == newTitle);
+            Assert.IsTrue(databaseProduct.Title == newTitle);
+        }
+
+        [Test]
+        public void UpdateDescriptionProduct()
+        {
+            int productId = 100;
+            Product mockedProduct = new Product
+            {
+                Id = productId,
+                Title = "New Smartphone",
+                Description = "This is such a nice smartphone",
+                Price = 1000,
+                Quantity = 1
+            };
+
+            _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>()))
+                .Returns(mockedProduct);
+
+            Product updatedProduct = mockedProduct;
+            string newDescription = "This is a pretty nice smartphone";
+            updatedProduct.Description = newDescription;
+
+            _productService.AddOrUpdateProduct(updatedProduct, _files);
+
+            Product databaseProduct = _productService.GetProductById(productId);
+
+            Assert.AreEqual(databaseProduct.Description, newDescription);
         }
 
         [TearDown]
@@ -168,6 +215,8 @@ namespace WPFSample.Test.Service
             _product = null;
             _files = null;
             _productService = null;
+            _mockProductRepository = null;
+            _mockProductImageRepository = null;
         }
     }
 }
