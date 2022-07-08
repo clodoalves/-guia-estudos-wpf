@@ -14,7 +14,7 @@ namespace WPFSample.Test.Service
     [TestFixture]
     public class ProductServiceTest
     {
-        private Product _product;
+        private Product _mockProduct;
         IList<FileStream> _files;
         private IProductService _productService;
         private Mock<IProductRepository> _mockProductRepository;
@@ -25,98 +25,78 @@ namespace WPFSample.Test.Service
         {
             _mockProductRepository = new Mock<IProductRepository>();
             _mockProductImageRepository = new Mock<IProductImageRepository>();
-
-            _product = new Product();
             _files = new List<FileStream>();
             _productService = new ProductService(_mockProductRepository.Object, _mockProductImageRepository.Object);
+            _mockProduct = new Product();
+
+            _mockProduct.Title = "Good product";
+            _mockProduct.Description = "New brand product";
+            _mockProduct.Price = 100;
+            _mockProduct.Quantity = 1;
         }
 
         [Test]
         public void AddProductWithoutTitleTest()
         {
-            _product.Title = string.Empty;
-            _product.Description = "New product";
-            _product.Price = 100;
-            _product.Quantity = 1;
-
-            Assert.Throws(typeof(RequiredFieldException), () => _productService.AddOrUpdateProduct(_product, _files));
+            _mockProduct.Title = string.Empty;
+            
+            Assert.Throws(typeof(RequiredFieldException), () => _productService.AddOrUpdateProduct(_mockProduct, _files));
         }
 
         [Test]
         public void AddProductWithoutPrice()
         {
-            _product.Title = "New laptop";
-            _product.Description = "New product";
-            _product.Price = 0;
-            _product.Quantity = 10;
-
-            Assert.Throws(typeof(RequiredFieldException), () => _productService.AddOrUpdateProduct(_product, _files));
+            _mockProduct.Price = 0;
+           
+            Assert.Throws(typeof(RequiredFieldException), () => _productService.AddOrUpdateProduct(_mockProduct, _files));
         }
 
         [Test]
         public void AddProductWithPriceLessThanZero()
         {
-            _product.Title = "New laptop";
-            _product.Description = "New product";
-            _product.Price = -2;
-            _product.Quantity = 10;
-
-            Assert.Throws(typeof(NumericFieldLessThanZeroException), () => _productService.AddOrUpdateProduct(_product, _files));
+            _mockProduct.Price = -2;
+         
+            Assert.Throws(typeof(NumericFieldLessThanZeroException), () => _productService.AddOrUpdateProduct(_mockProduct, _files));
         }
 
         [Test]
         public void AddProductWithQuantityLessThanZero()
-        {
-            _product.Title = "New laptop";
-            _product.Description = "New product";
-            _product.Price = 3;
-            _product.Quantity = -5;
+        {       
+            _mockProduct.Quantity = -5;
 
-            Assert.Throws(typeof(NumericFieldLessThanZeroException), () => _productService.AddOrUpdateProduct(_product, _files));
+            Assert.Throws(typeof(NumericFieldLessThanZeroException), () => _productService.AddOrUpdateProduct(_mockProduct, _files));
         }
 
         [Test]
         public void AddProductWithTitleThatExceedsLimitCharacters()
         {
-            _product.Title = "Product with loooooooooooooooooooooooooooooooooooooooooooooooooog title";
-            _product.Description = "New product";
-            _product.Price = 3;
-            _product.Quantity = 1;
-
-            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_product, _files));
+            _mockProduct.Title = "Product with loooooooooooooooooooooooooooooooooooooooooooooooooog title";
+            
+            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_mockProduct, _files));
         }
 
         [Test]
         public void AddProductWithDescriptionThatExceedsLimitCharacters()
-        {
-            _product.Title = "New laptop";
-            _product.Description = "Product with loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong description";
-            _product.Price = 3;
-            _product.Quantity = 1;
-
-            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_product, _files));
+        {         
+            _mockProduct.Description = "Product with loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong description";
+         
+            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_mockProduct, _files));
         }
 
         [Test]
         public void AddProductWithPriceThatExceedsLimitNumbers()
         {
-            _product.Title = "New laptop";
-            _product.Description = "New product";
-            _product.Price = 100000000000;
-            _product.Quantity = 1;
-
-            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_product, _files));
+            _mockProduct.Price = 100000000000;
+            
+            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_mockProduct, _files));
         }
 
         [Test]
         public void AddProductWithQuantityThatExceedsLimitNumbers()
         {
-            _product.Title = "New laptop";
-            _product.Description = "New product";
-            _product.Price = 3;
-            _product.Quantity = 100000000;
+            _mockProduct.Quantity = 100000000;
 
-            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_product, _files));
+            Assert.Throws(typeof(FieldExceedCaracterLimitException), () => _productService.AddOrUpdateProduct(_mockProduct, _files));
         }
 
         [Test]
@@ -124,26 +104,19 @@ namespace WPFSample.Test.Service
         {
             int newProductId = 1;
 
-            Product mockedProduct = new Product()
-            {
-                Id = newProductId,
-                Title = "Laptop",
-                Description = "Laptop",
-                Price = 2000,
-                Quantity = 2
-            };
-
-            _mockProductRepository.Setup(s => s.Add(It.IsAny<Product>())).Callback((Product p) => p = mockedProduct);
-            _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>())).Returns(mockedProduct);
+            _mockProduct.Id = newProductId;
+        
+            _mockProductRepository.Setup(s => s.Add(It.IsAny<Product>())).Callback((Product p) => p = _mockProduct);
+            _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>())).Returns(_mockProduct);
 
             Product newProduct = new Product()
             {
-                Title = "Laptop",
-                Description = "Laptop",
-                Price = 2000,
-                Quantity = 2
+                Title = "Good product",
+                Description = "New brand product",
+                Price = 100,
+                Quantity = 1
             };
-
+            
             IList<FileStream> productImages = new List<FileStream>();
 
             _productService.AddOrUpdateProduct(newProduct, productImages);
@@ -186,6 +159,7 @@ namespace WPFSample.Test.Service
         public void UpdateDescriptionProduct()
         {
             int productId = 100;
+
             Product mockedProduct = new Product
             {
                 Id = productId,
@@ -212,7 +186,7 @@ namespace WPFSample.Test.Service
         [TearDown]
         public void ClearConfiguration()
         {
-            _product = null;
+            _mockProduct = null;
             _files = null;
             _productService = null;
             _mockProductRepository = null;
