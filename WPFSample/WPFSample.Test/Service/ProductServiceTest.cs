@@ -29,10 +29,10 @@ namespace WPFSample.Test.Service
             _productService = new ProductService(_mockProductRepository.Object, _mockProductImageRepository.Object);
             _mockProduct = new Product();
 
-            _mockProduct.Title = "Good product";
-            _mockProduct.Description = "New brand product";
-            _mockProduct.Price = 100;
-            _mockProduct.Quantity = 1;
+            _mockProduct.Title = "New Smartphone";
+            _mockProduct.Description = "This is such a nice smartphone";
+            _mockProduct.Price = 1000;
+            _mockProduct.Quantity = 15;
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace WPFSample.Test.Service
         }
 
         [Test]
-        public void AddProductWithoutPrice()
+        public void AddProductWithoutPriceTest()
         {
             _mockProduct.Price = 0;
            
@@ -52,7 +52,7 @@ namespace WPFSample.Test.Service
         }
 
         [Test]
-        public void AddProductWithPriceLessThanZero()
+        public void AddProductWithPriceLessThanZeroTest()
         {
             _mockProduct.Price = -2;
          
@@ -60,7 +60,7 @@ namespace WPFSample.Test.Service
         }
 
         [Test]
-        public void AddProductWithQuantityLessThanZero()
+        public void AddProductWithQuantityLessThanZeroTest()
         {       
             _mockProduct.Quantity = -5;
 
@@ -68,7 +68,7 @@ namespace WPFSample.Test.Service
         }
 
         [Test]
-        public void AddProductWithTitleThatExceedsLimitCharacters()
+        public void AddProductWithTitleThatExceedsLimitCharactersTest()
         {
             _mockProduct.Title = "Product with loooooooooooooooooooooooooooooooooooooooooooooooooog title";
             
@@ -76,7 +76,7 @@ namespace WPFSample.Test.Service
         }
 
         [Test]
-        public void AddProductWithDescriptionThatExceedsLimitCharacters()
+        public void AddProductWithDescriptionThatExceedsLimitCharactersTest()
         {         
             _mockProduct.Description = "Product with loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong description";
          
@@ -84,7 +84,7 @@ namespace WPFSample.Test.Service
         }
 
         [Test]
-        public void AddProductWithPriceThatExceedsLimitNumbers()
+        public void AddProductWithPriceThatExceedsLimitNumbersTest()
         {
             _mockProduct.Price = 100000000000;
             
@@ -92,7 +92,7 @@ namespace WPFSample.Test.Service
         }
 
         [Test]
-        public void AddProductWithQuantityThatExceedsLimitNumbers()
+        public void AddProductWithQuantityThatExceedsLimitNumbersTest()
         {
             _mockProduct.Quantity = 100000000;
 
@@ -100,87 +100,99 @@ namespace WPFSample.Test.Service
         }
 
         [Test]
-        public void SaveNewProductWithoutImages()
+        public void SaveNewProductWithoutImagesTest()
         {
             int newProductId = 1;
 
-            _mockProduct.Id = newProductId;
-        
-            _mockProductRepository.Setup(s => s.Add(It.IsAny<Product>())).Callback((Product p) => p = _mockProduct);
-            _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>())).Returns(_mockProduct);
-
             Product newProduct = new Product()
             {
-                Title = "Good product",
-                Description = "New brand product",
-                Price = 100,
-                Quantity = 1
-            };
-            
-            IList<FileStream> productImages = new List<FileStream>();
-
-            _productService.AddOrUpdateProduct(newProduct, productImages);
-
-            Product savedProduct = _productService.GetProductById(newProductId);
-
-            Assert.AreEqual(savedProduct.Id, newProductId);
-        }
-
-        [Test]
-        public void UpdateTitleProduct()
-        {
-            int productId = 110;
-
-            Product mockedProduct = new Product()
-            {
-                Id = productId,
-                Title = "Old laptop",
-                Description = "Good laptop",
-                Price = 3000,
-                Quantity = 1
-            };
-
-            _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>()))
-                .Returns(mockedProduct);
-
-            string newTitle = "New laptop";
-
-            Product updatedProduct = mockedProduct;
-            updatedProduct.Title = newTitle;
-
-            _productService.AddOrUpdateProduct(updatedProduct, _files);
-
-            Product databaseProduct = _productService.GetProductById(productId);
-
-            Assert.IsTrue(databaseProduct.Title == newTitle);
-        }
-
-        [Test]
-        public void UpdateDescriptionProduct()
-        {
-            int productId = 100;
-
-            Product mockedProduct = new Product
-            {
-                Id = productId,
+                Id = newProductId,
                 Title = "New Smartphone",
                 Description = "This is such a nice smartphone",
                 Price = 1000,
-                Quantity = 1
+                Quantity = 15
             };
 
+            _mockProductRepository.Setup(s => s.Add(It.IsAny<Product>()))
+                .Callback((Product p) => p = newProduct);
             _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>()))
-                .Returns(mockedProduct);
+                .Returns(newProduct);
+     
+            _productService.AddOrUpdateProduct(_mockProduct, _files);
 
-            Product updatedProduct = mockedProduct;
-            string newDescription = "This is a pretty nice smartphone";
-            updatedProduct.Description = newDescription;
+            Product savedProduct = _productService.GetProductById(newProductId);
 
-            _productService.AddOrUpdateProduct(updatedProduct, _files);
+            Assert.AreEqual(newProductId, savedProduct.Id);
+        }
 
-            Product databaseProduct = _productService.GetProductById(productId);
+        [Test]
+        public void UpdateTitleProductTest()
+        {
+            int productId = 110;
+            _mockProduct.Id = productId;           
+            _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>()))
+                .Returns(_mockProduct);
 
-            Assert.AreEqual(databaseProduct.Description, newDescription);
+            Product originalProduct = _productService.GetProductById(_mockProduct.Id);            
+            string newTitle = "New title";
+            originalProduct.Title = newTitle;
+            _productService.AddOrUpdateProduct(originalProduct, _files);
+
+            Product updatedProduct = _productService.GetProductById(productId);
+
+            Assert.AreEqual(newTitle, updatedProduct.Title);
+        }
+
+        [Test]
+        public void UpdateDescriptionProductTest()
+        {
+            int productId = 110; 
+            _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>()))
+                .Returns(_mockProduct);
+
+            Product originalProduct = _productService.GetProductById(productId);            
+            string newDescription = "This is a pretty nice product";
+            originalProduct.Description = newDescription;
+            _productService.AddOrUpdateProduct(originalProduct, _files);
+
+            Product updatedProduct = _productService.GetProductById(productId);
+
+            Assert.AreEqual(newDescription, updatedProduct.Description);
+        }
+
+        [Test]
+        public void UpdatePriceProductTest() 
+        {
+            int productId = 110;
+            _mockProduct.Id = productId;
+            _mockProductRepository.Setup(m => m.GetById(It.IsAny<int>())).Returns(_mockProduct);
+
+            Product originalProduct = _productService.GetProductById(productId);
+            int newPrice = 3500;
+            originalProduct.Price = newPrice;
+            _productService.AddOrUpdateProduct(originalProduct, _files);
+
+            Product updatedProduct = _productService.GetProductById(productId);
+            
+            Assert.AreEqual(_mockProduct.Price, updatedProduct.Price);
+        }
+
+        [Test]
+        public void UpdateQuantityProductTest() 
+        {
+            int productId = 110;
+            _mockProduct.Id = productId;
+
+            _mockProductRepository.Setup(m => m.GetById(It.IsAny<int>())).Returns(_mockProduct);
+
+            Product originalProduct = _productService.GetProductById(productId);
+            int newQuantity = 300;
+            originalProduct.Quantity = newQuantity;
+            _productService.AddOrUpdateProduct(originalProduct, _files);
+
+            Product updatedProduct = _productService.GetProductById(productId);
+
+            Assert.AreEqual(newQuantity, updatedProduct.Quantity);
         }
 
         [TearDown]
