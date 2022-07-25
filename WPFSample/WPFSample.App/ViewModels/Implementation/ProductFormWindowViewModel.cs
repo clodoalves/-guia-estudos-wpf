@@ -4,6 +4,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -117,7 +118,9 @@ namespace WPFSample.App.ViewModels.Implementation
             try
             {
                 Product product = BindToProduct();
-                _productService.AddOrUpdateProduct(product, Images);
+                AddImagesToProduct(product, Images);
+
+                _productService.AddOrUpdateProduct(product);
 
                 RegionManager.RequestNavigate("MainRegion", "ProductsWindow");
             }
@@ -153,6 +156,14 @@ namespace WPFSample.App.ViewModels.Implementation
             Quantity = product.Quantity;
         }
 
+        private void AddImagesToProduct(Product product, IList<FileStream> filesWindow)
+        {
+            product.ProductImages = filesWindow.Select(f => new ProductImage()
+            {
+                Path = Path.GetFileName(f.Name)
+
+            }).ToList();
+        }
         #endregion
 
         #region Navigation

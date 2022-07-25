@@ -24,13 +24,11 @@ namespace WPFSample.Service.Implementation
             _productImageRepository = productImageRepository;
         }
 
-        public void AddOrUpdateProduct(Product product, IList<FileStream> filesWindow)
+        public void AddOrUpdateProduct(Product product)
         {
             ValidateRequiredFields(product);
             ValidateNumericFields(product);
             ValidateLimitCharacters(product);
-
-            AddImagesToProduct(product, filesWindow);
 
             if (product.Id != 0)
             {
@@ -48,7 +46,7 @@ namespace WPFSample.Service.Implementation
                 _productRepository.Add(product);
             }
 
-            SaveImages(product, filesWindow);
+            SaveImages(product);
         }
 
         private void ValidateRequiredFields(Product product)
@@ -112,16 +110,7 @@ namespace WPFSample.Service.Implementation
                 throw new FieldExceedCaracterLimitException(sb.ToString());
         }
 
-        private void AddImagesToProduct(Product product, IList<FileStream> filesWindow)
-        {
-            product.ProductImages = filesWindow.Select(f => new ProductImage()
-            {
-                Path = Path.GetFileName(f.Name)
-
-            }).ToList();
-        }
-
-        private void SaveImages(Product product, IList<FileStream> filesWindow)
+        private void SaveImages(Product product)
         {
             string rootPath = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -129,14 +118,16 @@ namespace WPFSample.Service.Implementation
 
             Directory.CreateDirectory(pathImagesProduct);
 
-            foreach (var item in filesWindow)
+            foreach (var productImage in product.ProductImages)
             {
-                string fileName = Path.GetFileName(item.Name);
+                FileStream originalFile = new FileStream(productImage.Path, FileMode.Open, FileAccess.Read);
+
+                string fileName = Path.GetFileName(productImage.Path);
 
                 using (FileStream fs = new FileStream($"{pathImagesProduct}/{fileName}", FileMode.Create))
                 {
-                    item.Seek(0, SeekOrigin.Begin);
-                    item.CopyTo(fs);
+                    originalFile.Seek(0, SeekOrigin.Begin);
+                    originalFile.CopyTo(fs);
                 }
             }
         }
