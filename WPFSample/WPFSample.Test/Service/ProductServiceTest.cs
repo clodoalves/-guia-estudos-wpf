@@ -196,6 +196,17 @@ namespace WPFSample.Test.Service
             Assert.AreEqual(newQuantity, updatedProduct.Quantity);
         }
 
+        [Test]
+        public void SaveNewProductWithOneImageTest()
+        {
+            //TODO
+        }
+
+        public void SaveNewProductWithMultipleImagesTest() 
+        {
+            //TODO
+        }
+
         [TearDown]
         public void ClearConfiguration()
         {

@@ -231,6 +231,7 @@
     <Compile Include="ViewModels\Contract\IShopWindowViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ProductDetailsWindowViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ProductFormWindowViewModel.cs" />
+    <Compile Include="ViewModels\Implementation\ProductImageViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ProductListItemViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ProductListWindowViewModel.cs" />
     <Compile Include="ViewModels\Implementation\ShopItemViewModel.cs" />

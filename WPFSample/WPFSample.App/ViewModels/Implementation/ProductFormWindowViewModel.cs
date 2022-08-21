@@ -59,8 +59,8 @@ namespace WPFSample.App.ViewModels.Implementation
             set { SetProperty(ref _price, value); }
         }
 
-        private ObservableCollection<FileStream> images;
-        public ObservableCollection<FileStream> Images
+        private ObservableCollection<ProductImageViewModel> images;
+        public ObservableCollection<ProductImageViewModel> Images
         {
             get { return images; }
             set { SetProperty(ref images, value); }
@@ -81,6 +81,9 @@ namespace WPFSample.App.ViewModels.Implementation
         public DelegateCommand AddImage => _addImages ?? (_addImages = new DelegateCommand(ExecuteAddImages));
 
         private DelegateCommand _addImages;
+
+
+
         #endregion
 
         #region Private methods
@@ -96,7 +99,9 @@ namespace WPFSample.App.ViewModels.Implementation
                 {
                     FileStream filestream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
 
-                    images.Add(filestream);
+                    ProductImageViewModel productImageViewModel = new ProductImageViewModel(filestream);
+
+                    images.Add(productImageViewModel);
                 }
             }
         }
@@ -118,7 +123,10 @@ namespace WPFSample.App.ViewModels.Implementation
             try
             {
                 Product product = BindToProduct();
-                AddImagesToProduct(product, Images);
+
+                IList<FileStream> sources = Images.Select(i => i.Source).ToList();
+
+                AddImagesToProduct(product, sources);
 
                 _productService.AddOrUpdateProduct(product);
 
@@ -164,6 +172,8 @@ namespace WPFSample.App.ViewModels.Implementation
 
             }).ToList();
         }
+
+
         #endregion
 
         #region Navigation
@@ -183,7 +193,7 @@ namespace WPFSample.App.ViewModels.Implementation
                 ClearViewModel();
             }
 
-            Images = new ObservableCollection<FileStream>();
+            Images = new ObservableCollection<ProductImageViewModel>();
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)

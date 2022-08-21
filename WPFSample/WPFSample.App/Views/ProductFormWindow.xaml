@@ -9,7 +9,7 @@
     <UserControl.Resources>
 
     </UserControl.Resources>
-    
+
     <Grid Margin="0,0,0,0"
         HorizontalAlignment="Stretch" 
         VerticalAlignment="Stretch">
@@ -53,7 +53,7 @@
             </Border>
         </DockPanel>
         <StackPanel Grid.Column="1">
-                <Button Content="Add Image" Command="{Binding AddImage}"  
+            <Button Content="Add Image" Command="{Binding AddImage}"  
                     Style="{StaticResource btnUpload}"/>
             <ScrollViewer>
                 <ListView x:Name="products" ItemsSource="{Binding Images}">
@@ -70,6 +70,13 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Image Source="{Binding Name}" Width="100" Height="100"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Delete">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox Style="{StaticResource btnForm}" Command="{Binding DeleteImage}"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
