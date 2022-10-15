@@ -17,48 +17,24 @@ namespace WPFSample.App.ViewModels.Implementation
             Name = source.Name;
         }
 
-        private int _id;
+        public int Id { get; set; }
 
-        public int Id
+        public string Name { get; set; }
+
+
+        private bool _checkedToDelete;
+        public bool CheckedToDelete
         {
             get
             {
-                return _id;
+                return _checkedToDelete;
             }
 
             set
             {
-                SetProperty(ref _id, value);
+                SetProperty(ref _checkedToDelete, value);
             }
         }
-
-        private string _name;
-
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                SetProperty(ref _name, value);
-            }
-        }
-
-        private bool _checkeddToDelete;
-
-        public int CheckedToDelete 
-        { get; set; }
-        public DelegateCommand DeleteImage => _removeImages ?? (_removeImages = new DelegateCommand(ExecuteDeleteImage));
-
-        private DelegateCommand _removeImages;
-
-        private void ExecuteDeleteImage()
-        {
-
-        }
-
         public FileStream Source { get; private set; }
     }
 }

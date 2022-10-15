@@ -217,6 +217,7 @@
     <Compile Include="Configuration\Bootstrapper.cs" />
     <Compile Include="Common\PageTokens.cs" />
     <Compile Include="Controls\Rating.cs" />
+    <Compile Include="Converters\ControlVisibilityConverter.cs" />
     <Compile Include="Quartz\Jobs\DarkModeChangeJob.cs" />
     <Compile Include="Quartz\StarterJob.cs" />
     <Compile Include="Quartz\Jobs\TimeoutJob.cs" />

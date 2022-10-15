@@ -59,11 +59,31 @@ namespace WPFSample.App.ViewModels.Implementation
             set { SetProperty(ref _price, value); }
         }
 
-        private ObservableCollection<ProductImageViewModel> images;
+        private ObservableCollection<ProductImageViewModel> _images;
         public ObservableCollection<ProductImageViewModel> Images
         {
-            get { return images; }
-            set { SetProperty(ref images, value); }
+            get { return _images; }
+            set
+            {
+                if (SetProperty(ref _images, value))
+                {
+
+                }
+            }
+        }
+
+        private bool _allImagesChecked;
+
+        public bool AllImagesChecked
+        {
+            get 
+            {
+                return _allImagesChecked; 
+            }
+            set 
+            {
+                SetProperty(ref _allImagesChecked, value);
+            } 
         }
 
         #endregion
@@ -82,7 +102,13 @@ namespace WPFSample.App.ViewModels.Implementation
 
         private DelegateCommand _addImages;
 
+        public DelegateCommand DeleteCheckedImages => _deleteCheckedProducts ?? (_deleteCheckedProducts = new DelegateCommand(ExecuteDeleteCheckedImages));
 
+        private DelegateCommand _deleteCheckedProducts;
+
+        public DelegateCommand CheckAllImages => _checkAllImages ?? (_deleteCheckedProducts = new DelegateCommand(ExecuteCheckAllImages));
+
+        public DelegateCommand _checkAllImages; 
 
         #endregion
 
@@ -91,7 +117,7 @@ namespace WPFSample.App.ViewModels.Implementation
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = true;
-            //openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
 
             if (openFileDialog.ShowDialog().GetValueOrDefault())
             {
@@ -101,9 +127,12 @@ namespace WPFSample.App.ViewModels.Implementation
 
                     ProductImageViewModel productImageViewModel = new ProductImageViewModel(filestream);
 
-                    images.Add(productImageViewModel);
+                    Images.Add(productImageViewModel);
                 }
             }
+
+            RaisePropertyChanged("Images");
+            AllImagesChecked = false;
         }
 
         private Product BindToProduct()
@@ -144,6 +173,30 @@ namespace WPFSample.App.ViewModels.Implementation
             {
 
             }
+        }
+
+        private void ExecuteDeleteCheckedImages()
+        {
+            foreach (ProductImageViewModel image in Images.Where(i => i.CheckedToDelete).ToList())
+            {
+                Images.Remove(image);
+            }
+
+            RaisePropertyChanged(nameof(Images));
+        }
+
+        private void ExecuteCheckAllImages()
+        {
+            if (AllImagesChecked)
+            {
+                Images.Select(i => { i.CheckedToDelete = true; return i; }).ToList();
+            }
+            else 
+            {
+                Images.Select(i => { i.CheckedToDelete = false; return i; }).ToList();
+            }
+
+            RaisePropertyChanged(nameof(Images));
         }
 
         private void ClearViewModel()
