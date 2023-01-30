@@ -77,7 +77,7 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Background" Value="{StaticResource fundoBorda}" />
         <Setter Property="Height" Value="30"/>
-        <Setter Property="Margin" Value="0,4,0,20"/>
+        <Setter Property="Margin" Value="0,4,0,10"/>
     </Style>
     
 </ResourceDictionary>

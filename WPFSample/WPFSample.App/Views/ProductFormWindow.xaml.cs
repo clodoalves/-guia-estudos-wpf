@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPFSample.App.ViewModels;
 using WPFSample.App.ViewModels.Contract;
+using WPFSample.App.ViewModels.Implementation;
 
 namespace WPFSample.App.Views
 {
@@ -21,11 +22,31 @@ namespace WPFSample.App.Views
     /// Interaction logic for ProductFormWindow.xaml
     /// </summary>
     public partial class ProductFormWindow : UserControl
-    {    
+    {
         public ProductFormWindow(IProductFormWindowViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
+        }
+
+        public void checkImage_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var productImages = products.ItemsSource.Cast<ProductImageViewModel>();
+
+            if (productImages != null && productImages.Any(i => !i.CheckedToDelete)) 
+            {
+                checkAllImages.IsChecked = false;
+            }
+        }
+
+        private void checkImage_Checked(object sender, RoutedEventArgs e)
+        {
+            var productImages = products.ItemsSource.Cast<ProductImageViewModel>();
+
+            if (productImages != null && productImages.All(i => i.CheckedToDelete))
+            {
+                checkAllImages.IsChecked = true;
+            }
         }
     }
 }
