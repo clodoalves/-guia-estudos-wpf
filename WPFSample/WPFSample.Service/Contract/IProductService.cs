@@ -6,7 +6,7 @@ namespace WPFSample.Service.Contract
 {
     public interface IProductService
     {
-        void AddOrUpdateProduct(Product product);
+        Product AddOrUpdateProduct(Product product);
 
         IList<Product> GetAllProducts();
 

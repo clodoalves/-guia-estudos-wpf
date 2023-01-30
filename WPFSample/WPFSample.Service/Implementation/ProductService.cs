@@ -24,7 +24,7 @@ namespace WPFSample.Service.Implementation
             _productImageRepository = productImageRepository;
         }
 
-        public void AddOrUpdateProduct(Product product)
+        public Product AddOrUpdateProduct(Product product)
         {
             ValidateRequiredFields(product);
             ValidateNumericFields(product);
@@ -47,6 +47,8 @@ namespace WPFSample.Service.Implementation
             }
 
             SaveImages(product);
+
+            return product;
         }
 
         private void ValidateRequiredFields(Product product)
@@ -91,7 +93,7 @@ namespace WPFSample.Service.Implementation
                 sb.AppendLine($"{nameof(product.Title)} has limit of {MaxLengthConstValues.MAX_LENGTH_PRODUCT_TITLE} characteres");
             }
 
-            if (product.Description.Length > MaxLengthConstValues.MAX_LENGTH_PRODUCT_DESCRIPTION)
+            if (product.Description?.Length > MaxLengthConstValues.MAX_LENGTH_PRODUCT_DESCRIPTION)
             {
                 sb.AppendLine($"{nameof(product.Description)} has limit of {MaxLengthConstValues.MAX_LENGTH_PRODUCT_DESCRIPTION} characteres");
             }
