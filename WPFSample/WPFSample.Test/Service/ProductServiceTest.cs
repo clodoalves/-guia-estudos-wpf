@@ -15,7 +15,6 @@ namespace WPFSample.Test.Service
     public class ProductServiceTest
     {
         private Product _mockProduct;
-        IList<FileStream> _files;
         private IProductService _productService;
         private Mock<IProductRepository> _mockProductRepository;
         private Mock<IProductImageRepository> _mockProductImageRepository;
@@ -25,20 +24,22 @@ namespace WPFSample.Test.Service
         {
             _mockProductRepository = new Mock<IProductRepository>();
             _mockProductImageRepository = new Mock<IProductImageRepository>();
-            _files = new List<FileStream>();
-            _productService = new ProductService(_mockProductRepository.Object, _mockProductImageRepository.Object);
             _mockProduct = new Product();
-
-            _mockProduct.Title = "New Smartphone";
-            _mockProduct.Description = "This is such a nice smartphone";
-            _mockProduct.Price = 1000;
-            _mockProduct.Quantity = 15;
-            _mockProduct.ProductImages = new List<ProductImage>();
         }
 
         [Test]
         public void AddProductWithoutTitleTest()
         {
+            //Arrange
+            Product product = new Product()
+            {
+                Id = 1,
+                Description = "This is a nice smartphone",
+                Title = string.Empty,
+                Price = 1000,
+                Quantity = 1
+            };
+
             _mockProduct.Title = string.Empty;
 
             Assert.Throws(typeof(RequiredFieldException), () => _productService.AddOrUpdateProduct(_mockProduct));
@@ -109,7 +110,7 @@ namespace WPFSample.Test.Service
             _mockProductRepository.Setup(s => s.Add(It.IsAny<Product>()));
             _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>())).Returns(_mockProduct);
             _productService = new ProductService(_mockProductRepository.Object, _mockProductImageRepository.Object);
-            
+
             //act
             _productService.AddOrUpdateProduct(_mockProduct);
             Product savedProduct = _productService.GetProductById(1000);
@@ -126,7 +127,7 @@ namespace WPFSample.Test.Service
             string newTitle = "New title";
 
             _mockProduct.Id = productId;
-            _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>())).Returns(new Product() {Id = productId, Title = oldTitle, Price = 100, ProductImages  = new List<ProductImage>() });
+            _mockProductRepository.Setup(s => s.GetById(It.IsAny<int>())).Returns(new Product() { Id = productId, Title = oldTitle, Price = 100, ProductImages = new List<ProductImage>() });
             _mockProductRepository.Setup(s => s.Update(It.IsAny<Product>())).Callback(() => new Product() { Id = productId, Title = newTitle, Price = 100, ProductImages = new List<ProductImage>() });
 
             _productService = new ProductService(_mockProductRepository.Object, _mockProductImageRepository.Object);
@@ -205,7 +206,6 @@ namespace WPFSample.Test.Service
         public void ClearConfiguration()
         {
             _mockProduct = null;
-            _files = null;
             _productService = null;
             _mockProductRepository = null;
             _mockProductImageRepository = null;
