@@ -138,6 +138,9 @@ namespace WPFSample.Service.Implementation
         {
             Product product = _productRepository.GetById(id);
 
+            if (product == null)
+                throw new RegisterNotExistsException("Register non-existing");
+
             _productRepository.Delete(product);
         }
 
